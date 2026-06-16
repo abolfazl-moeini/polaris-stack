@@ -1,4 +1,3 @@
-import type { ElementType } from "react";
 import { cx } from "../utilities/cx";
 import { spaceVar, type StyleWithVars } from "../utilities/props";
 import type { BaseLayoutProps, Space } from "./types";
@@ -25,13 +24,11 @@ export function Switcher({
     "--ps-gap": spaceVar(gap),
     "--ps-threshold": threshold,
   };
-  if (limit != null) {
-    inlineStyle["--ps-limit"] = String(limit);
-  }
   const C: any = Comp;
   return (
     <C
       className={cx("ps-switcher", className)}
+      data-limit={limit != null ? limit : undefined}
       style={inlineStyle}
       {...rest}
     >

@@ -1,4 +1,3 @@
-import type { ElementType } from "react";
 import { cx } from "../utilities/cx";
 import { spaceVar, type StyleWithVars } from "../utilities/props";
 import type { BaseLayoutProps, Space } from "./types";
