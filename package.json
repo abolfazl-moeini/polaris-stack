@@ -25,6 +25,7 @@
   },
   "scripts": {
     "build": "node build.config.mjs && tsc --emitDeclarationOnly --outDir dist",
+    "test": "echo \"Run tests from monorepo root: npm test -- --testPathPattern=polaris\"",
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {

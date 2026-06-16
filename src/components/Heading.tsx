@@ -3,7 +3,7 @@ import { cx } from "../utilities/cx";
 
 type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
 
-type HeadingProps = HTMLAttributes<HTMLHeadingElement> & {
+type HeadingProps = Omit<HTMLAttributes<HTMLHeadingElement>, "level"> & {
   level?: HeadingLevel;
   children?: ReactNode;
 };
@@ -23,7 +23,7 @@ export function Heading({
   children,
   ...rest
 }: HeadingProps) {
-  const Tag: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" = TAGS[level as HeadingLevel];
+  const Tag = TAGS[level];
   return (
     <Tag
       className={cx("ps-heading", `ps-heading-${level}`, className)}
