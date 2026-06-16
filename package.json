@@ -37,7 +37,9 @@
   },
   "devDependencies": {
     "@preact/compat": "^18.3.2",
-    "react": "npm:@preact/compat@^18.3.2"
+    "esbuild": ">=0.20",
+    "react": "npm:@preact/compat@^18.3.2",
+    "typescript": ">=5.0"
   },
   "license": "MIT"
 }
