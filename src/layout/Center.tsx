@@ -12,20 +12,23 @@ type CenterProps = BaseLayoutProps & {
 export function Center({
   as: Comp = "div",
   max = "var(--ps-size-content)",
-  gutters = "4",
+  gutters,
   className,
   style,
   children,
   ...rest
 }: CenterProps) {
+  const C: any = Comp;
   const inlineStyle: StyleWithVars = {
     ...style,
     "--ps-max": max,
-    "--ps-gutters": spaceVar(gutters),
   };
+  if (gutters != null) {
+    inlineStyle["--ps-gutters"] = spaceVar(gutters);
+  }
   return (
-    <Comp className={cx("ps-center", className)} style={inlineStyle} {...rest}>
+    <C className={cx("ps-center", className)} style={inlineStyle} {...rest}>
       {children}
-    </Comp>
+    </C>
   );
 }

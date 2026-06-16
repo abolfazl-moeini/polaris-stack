@@ -8,28 +8,54 @@ Inside a wp-starter-kit project, Polaris is copied to `src/polaris/` by the `wps
 
 As a workspace package:
 
-```bash
+```ts
 import "@wpsk/polaris-stack/styles.css";
 import { Button, Card, Stack, setPolarisTheme } from "@wpsk/polaris-stack";
 ```
 
-## Theme switching
-
-Themes use CSS custom properties on `:root` / `[data-theme="dark"]`. Switch without React re-renders:
+You can also import the theme script without components or CSS:
 
 ```ts
-import { setPolarisTheme } from "@wpsk/polaris-stack";
-
-setPolarisTheme("dark");
+import { createPolarisThemeInitScript, setPolarisTheme } from "@wpsk/polaris-stack/theme-script";
 ```
 
-For SSR-safe initial theme, use `createPolarisThemeInitScript()` in an inline `<script>` before hydration.
+## Exports
 
-## Layout vs style
+- `@wpsk/polaris-stack` — all layout primitives + styled components + theme functions + types.
+- `@wpsk/polaris-stack/styles.css` — the single global stylesheet (tokens + themes + base + layout + component rules). Import once.
+- `@wpsk/polaris-stack/theme-script` — theme utilities only (no React, safe for inline scripts).
 
-- Use `Stack`, `Cluster`, `Grid`, etc. for spacing and arrangement only.
-- Use `Button`, `Card`, `Text`, `Heading` for visual appearance.
-- Never pass layout props (`gap`, `mt`, `gridColumn`) to styled components — wrap them in layout primitives instead.
+## Layout primitives
+
+`Box`, `Stack`, `Cluster`, `Center`, `Grid`, `Sidebar`, `Switcher`.
+
+All accept `as`, `className`, `children`, and a small set of spacing props (`gap`, `p*` etc). They set only layout CSS variables inline and rely on global `.ps-*` rules.
+
+## Styled components
+
+`Button` (variants: solid | soft | ghost), `Card`, `Text`, `Heading` (semantic h1–h6 via `level`).
+
+These set colors, radii, shadows, typography using tokens only. Do not pass layout props to them.
+
+## Theme switching
+
+```ts
+import { setPolarisTheme, createPolarisThemeInitScript } from "@wpsk/polaris-stack";
+
+setPolarisTheme("dark"); // or "light" | "system"
+
+// For FOUC-free SSR: output early in <head>
+const init = createPolarisThemeInitScript({ defaultTheme: "system" });
+// <script dangerouslySetInnerHTML={{ __html: init }} />
+```
+
+Themes are driven by `[data-theme="dark"]` on `<html>` and CSS custom properties (`--ps-*`).
+
+## Layout vs style (core rule)
+
+- Layout primitives control flow, alignment, spacing via props + CSS vars.
+- Styled components never accept or apply spacing/layout props.
+- Wrap styled components in `Stack` / `Cluster` etc. when spacing is needed.
 
 ## Do not do this
 
@@ -43,4 +69,6 @@ For SSR-safe initial theme, use `createPolarisThemeInitScript()` in an inline `<
 
 ## React and Preact
 
-Write framework-neutral TSX. The host project selects Preact (`react` → `@preact/compat`) or real React via `package.json` aliases.
+Write framework-neutral TSX using the automatic JSX runtime (no `import React`, no pragma). The host chooses Preact (via `react` → `@preact/compat` alias) or real React.
+
+See the kit docs for alias setup.

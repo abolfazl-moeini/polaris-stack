@@ -11,8 +11,14 @@
     "rootDir": "src",
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
+    "paths": {
+      "react": ["./react"],
+      "react-dom": ["./react"],
+      "react/jsx-runtime": ["./react"]
+    }
   },
-  "include": ["src"],
+  "include": ["src", "react.d.ts"],
   "exclude": ["dist", "node_modules"]
 }

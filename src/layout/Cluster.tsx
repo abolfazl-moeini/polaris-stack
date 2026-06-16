@@ -37,6 +37,7 @@ export function Cluster({
   children,
   ...rest
 }: ClusterProps) {
+  const C: any = Comp;
   const inlineStyle: StyleWithVars = {
     ...style,
     "--ps-gap": spaceVar(gap),
@@ -44,8 +45,8 @@ export function Cluster({
     "--ps-align": ALIGN_MAP[align],
   };
   return (
-    <Comp className={cx("ps-cluster", className)} style={inlineStyle} {...rest}>
+    <C className={cx("ps-cluster", className)} style={inlineStyle} {...rest}>
       {children}
-    </Comp>
+    </C>
   );
 }

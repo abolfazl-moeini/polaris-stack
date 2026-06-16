@@ -16,10 +16,11 @@ export function Stack({
   children,
   ...rest
 }: StackProps) {
+  const C: any = Comp;
   const inlineStyle: StyleWithVars = { ...style, "--ps-gap": spaceVar(gap) };
   return (
-    <Comp className={cx("ps-stack", className)} style={inlineStyle} {...rest}>
+    <C className={cx("ps-stack", className)} style={inlineStyle} {...rest}>
       {children}
-    </Comp>
+    </C>
   );
 }

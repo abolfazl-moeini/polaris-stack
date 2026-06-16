@@ -18,14 +18,15 @@ export function Grid({
   children,
   ...rest
 }: GridProps) {
+  const C: any = Comp;
   const inlineStyle: StyleWithVars = {
     ...style,
     "--ps-gap": spaceVar(gap),
     "--ps-min": min,
   };
   return (
-    <Comp className={cx("ps-grid", className)} style={inlineStyle} {...rest}>
+    <C className={cx("ps-grid", className)} style={inlineStyle} {...rest}>
       {children}
-    </Comp>
+    </C>
   );
 }

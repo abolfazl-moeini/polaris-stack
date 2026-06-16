@@ -28,14 +28,15 @@ export function Sidebar({
     "--ps-side-width": sideWidth,
     "--ps-content-min": contentMin,
   };
+  const C: any = Comp;
   return (
-    <Comp
+    <C
       className={cx("ps-sidebar", className)}
       data-side={side}
       style={inlineStyle}
       {...rest}
     >
       {children}
-    </Comp>
+    </C>
   );
 }

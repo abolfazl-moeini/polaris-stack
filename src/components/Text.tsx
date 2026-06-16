@@ -12,9 +12,10 @@ export function Text({
   children,
   ...rest
 }: TextProps) {
+  const C: any = Comp;
   return (
-    <Comp className={cx("ps-text", className)} {...rest}>
+    <C className={cx("ps-text", className)} {...rest}>
       {children}
-    </Comp>
+    </C>
   );
 }
