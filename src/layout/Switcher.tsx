@@ -25,12 +25,13 @@ export function Switcher({
     "--ps-gap": spaceVar(gap),
     "--ps-threshold": threshold,
   };
+  const dataAttrs = limit != null ? { "data-limit": limit } : {};
   const C: any = Comp;
   return (
     <C
       className={cx("ps-switcher", className)}
-      data-limit={limit != null ? limit : undefined}
       style={inlineStyle}
+      {...dataAttrs}
       {...rest}
     >
       {children}

@@ -29,15 +29,40 @@
   color: var(--ps-color-primary-fg);
 }
 
+.ps-button-solid:hover {
+  filter: brightness(0.92);
+}
+
+.ps-button-solid:active {
+  filter: brightness(0.85);
+}
+
 .ps-button-soft {
   background-color: var(--ps-color-soft);
   color: var(--ps-color-soft-fg);
+}
+
+.ps-button-soft:hover {
+  filter: brightness(0.96);
+}
+
+.ps-button-soft:active {
+  filter: brightness(0.92);
 }
 
 .ps-button-ghost {
   background-color: transparent;
   color: var(--ps-color-primary);
   border-color: var(--ps-color-border);
+}
+
+.ps-button-ghost:hover {
+  background-color: var(--ps-color-muted);
+  border-color: var(--ps-color-primary);
+}
+
+.ps-button-ghost:active {
+  background-color: var(--ps-color-border);
 }
 
 .ps-card {
