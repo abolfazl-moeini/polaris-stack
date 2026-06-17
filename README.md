@@ -4,7 +4,7 @@ Polaris Stack is a lightweight design foundation that separates **layout** (spac
 
 ## Install
 
-Inside a wp-starter-kit project, Polaris is copied to `src/polaris/` by the `wpsk` installer (`--frontend-stack=polaris`).
+Inside a wp-starter-kit project, Polaris is copied to `src/polaris/` by the `wpdev` installer (`--frontend-stack=polaris`).
 
 As a workspace package:
 
