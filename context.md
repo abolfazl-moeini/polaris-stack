@@ -33,7 +33,7 @@ Rules:
 ### 2.2 Styling = Global BEM (Path B)
 - Current approach: global CSS with `ps-` prefix (`.ps-stack`, `.ps-button-solid`, `.ps-card`).
 - Single public stylesheet: `dist/styles.css` (tokens + themes + base + layout + components).
-- Consumers import it once: `import "@wpsk/polaris-stack/styles.css";`
+- Consumers import it once: `import "@wpdev/polaris-stack/styles.css";`
 - No `*.module.css` in v1. No CSS Modules plugin required.
 
 ### 2.3 Layout Primitives (Every Layout / Bedrock style)
@@ -203,7 +203,7 @@ packages/polaris-stack/
 3. Use `StyleWithVars` (not plain `CSSProperties`) for any style prop that may carry `--ps-*`.
 4. All new layout primitives must follow the existing `cx` + var-setting pattern and update `layout.css`.
 5. Theme tokens must be defined in both light and dark.
-6. When you change source, the generator in `@wpsk/create-wp-project` will pick it up dynamically via `_polaris-template.js` (it walks `src/` at generation time).
+6. When you change source, the generator in `@wpdev/create-wp-project` will pick it up dynamically via `_polaris-template.js` (it walks `src/` at generation time).
 7. Tests live outside this package at `../../tests/packages/polaris-stack/`. Run from the wp-starter-kit root.
 8. Keep the package framework-neutral. Do not add Preact-specific or React-specific imports in source.
 9. `react.d.ts` is a build-time shim for the kit only — do not copy it into generated projects.
@@ -215,7 +215,7 @@ packages/polaris-stack/
 - This package is the **implementation** of the Polaris design foundation.
 - It is optionally copied into generated plugins under `src/polaris/` (see `frontendStack` generator).
 - Generated projects also get a `PolarisDemo` module as a usage example.
-- The kit's esbuild pipeline (`wpsk-build-components`) discovers and builds entries that import from the copied `polaris/` folder.
+- The kit's esbuild pipeline (`wpdev-build-components`) discovers and builds entries that import from the copied `polaris/` folder.
 - Do not add dependencies to this package unless they are peer (React is optional peer only).
 
 ---

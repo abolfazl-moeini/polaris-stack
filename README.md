@@ -1,4 +1,4 @@
-# @wpsk/polaris-stack
+# @wpdev/polaris-stack
 
 Polaris Stack is a lightweight design foundation that separates **layout** (spacing, flow, grids) from **style** (colors, typography, themes).
 
@@ -9,21 +9,21 @@ Inside a wp-starter-kit project, Polaris is copied to `src/polaris/` by the `wps
 As a workspace package:
 
 ```ts
-import "@wpsk/polaris-stack/styles.css";
-import { Button, Card, Stack, setPolarisTheme } from "@wpsk/polaris-stack";
+import "@wpdev/polaris-stack/styles.css";
+import { Button, Card, Stack, setPolarisTheme } from "@wpdev/polaris-stack";
 ```
 
 You can also import the theme script without components or CSS:
 
 ```ts
-import { createPolarisThemeInitScript, setPolarisTheme } from "@wpsk/polaris-stack/theme-script";
+import { createPolarisThemeInitScript, setPolarisTheme } from "@wpdev/polaris-stack/theme-script";
 ```
 
 ## Exports
 
-- `@wpsk/polaris-stack` — all layout primitives + styled components + theme functions + types.
-- `@wpsk/polaris-stack/styles.css` — the single global stylesheet (tokens + themes + base + layout + component rules). Import once.
-- `@wpsk/polaris-stack/theme-script` — theme utilities only (no React, safe for inline scripts).
+- `@wpdev/polaris-stack` — all layout primitives + styled components + theme functions + types.
+- `@wpdev/polaris-stack/styles.css` — the single global stylesheet (tokens + themes + base + layout + component rules). Import once.
+- `@wpdev/polaris-stack/theme-script` — theme utilities only (no React, safe for inline scripts).
 
 ## Layout primitives
 
@@ -40,7 +40,7 @@ These set colors, radii, shadows, typography using tokens only. Do not pass layo
 ## Theme switching
 
 ```ts
-import { setPolarisTheme, createPolarisThemeInitScript } from "@wpsk/polaris-stack";
+import { setPolarisTheme, createPolarisThemeInitScript } from "@wpdev/polaris-stack";
 
 setPolarisTheme("dark"); // or "light" | "system"
 
