@@ -1,3 +1,4 @@
+import type { ReactElement } from "react";
 import { cx } from "../utilities/cx";
 import { spaceVar, type StyleWithVars } from "../utilities/props";
 import type { BaseLayoutProps, Space } from "./types";
@@ -16,7 +17,7 @@ export function Center({
   style,
   children,
   ...rest
-}: CenterProps) {
+}: CenterProps): ReactElement {
   const C: any = Comp;
   const inlineStyle: StyleWithVars = {
     ...style,

@@ -1,4 +1,4 @@
-import type { HTMLAttributes, ReactNode } from "react";
+import type { HTMLAttributes, ReactElement, ReactNode } from "react";
 import { cx } from "../utilities/cx";
 
 type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
@@ -22,7 +22,7 @@ export function Heading({
   className,
   children,
   ...rest
-}: HeadingProps) {
+}: HeadingProps): ReactElement {
   const Tag = TAGS[level];
   return (
     <Tag

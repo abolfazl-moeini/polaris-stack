@@ -1,3 +1,4 @@
+import type { ReactElement } from "react";
 import { cx } from "../utilities/cx";
 import { spaceVar, type StyleWithVars } from "../utilities/props";
 import type { BaseLayoutProps, Space } from "./types";
@@ -14,7 +15,7 @@ export function Stack({
   style,
   children,
   ...rest
-}: StackProps) {
+}: StackProps): ReactElement {
   const C: any = Comp;
   const inlineStyle: StyleWithVars = { ...style, "--ps-gap": spaceVar(gap) };
   return (

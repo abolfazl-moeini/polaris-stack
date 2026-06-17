@@ -53,7 +53,8 @@ export function createPolarisThemeInitScript(options?: {
     `var d=${JSON.stringify(defaultTheme)};` +
     `var t=localStorage.getItem(k);` +
     `var m=matchMedia("(prefers-color-scheme: dark)").matches;` +
-    `var r=t||(d==="system"?(m?"dark":"light"):d);` +
+    `var s=function(v){return v==="system"?(m?"dark":"light"):v;};` +
+    `var r=t?s(t):(d==="system"?(m?"dark":"light"):d);` +
     `document.documentElement.dataset.theme=r;` +
     `}catch(e){}})();`
   );

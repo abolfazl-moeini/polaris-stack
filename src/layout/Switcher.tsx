@@ -1,3 +1,4 @@
+import type { ReactElement } from "react";
 import { cx } from "../utilities/cx";
 import { spaceVar, type StyleWithVars } from "../utilities/props";
 import type { BaseLayoutProps, Space } from "./types";
@@ -18,7 +19,7 @@ export function Switcher({
   style,
   children,
   ...rest
-}: SwitcherProps) {
+}: SwitcherProps): ReactElement {
   const inlineStyle: StyleWithVars = {
     ...style,
     "--ps-gap": spaceVar(gap),

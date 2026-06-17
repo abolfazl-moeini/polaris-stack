@@ -1,3 +1,4 @@
+import type { ReactElement } from "react";
 import { cx } from "../utilities/cx";
 import { spaceVar, type StyleWithVars } from "../utilities/props";
 import type { BaseLayoutProps, Space } from "./types";
@@ -35,7 +36,7 @@ export function Cluster({
   style,
   children,
   ...rest
-}: ClusterProps) {
+}: ClusterProps): ReactElement {
   const C: any = Comp;
   const inlineStyle: StyleWithVars = {
     ...style,

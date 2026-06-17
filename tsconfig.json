@@ -14,9 +14,9 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
-      "react": ["./react"],
-      "react-dom": ["./react"],
-      "react/jsx-runtime": ["./react"]
+      "react": ["./react.d.ts"],
+      "react-dom": ["./react.d.ts"],
+      "react/jsx-runtime": ["./react.d.ts"]
     }
   },
   "include": ["src", "react.d.ts"],

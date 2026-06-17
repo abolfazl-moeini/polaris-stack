@@ -1,4 +1,4 @@
-import type { ButtonHTMLAttributes, ReactNode } from "react";
+import type { ButtonHTMLAttributes, ReactElement, ReactNode } from "react";
 import { cx } from "../utilities/cx";
 
 export type ButtonVariant = "solid" | "soft" | "ghost";
@@ -14,7 +14,7 @@ export function Button({
   type = "button",
   children,
   ...rest
-}: ButtonProps) {
+}: ButtonProps): ReactElement {
   return (
     <button
       type={type}

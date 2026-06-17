@@ -30,6 +30,10 @@ export type ButtonHTMLAttributes<T extends EventTarget = HTMLButtonElement> = Pr
 
 export type CSSProperties = PreactJSX.CSSProperties;
 
+// Re-export core React element type so components can explicitly annotate
+// return types as ReactElement for clean .d.ts output (no PreactJSX leak).
+export type ReactElement = PreactJSX.Element;
+
 // Support automatic JSX runtime type lookup ("react/jsx-runtime") used by
 // "jsx": "react-jsx" + tsc emitDeclarationOnly inside the package.
 export const jsx: any;

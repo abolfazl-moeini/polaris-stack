@@ -1,3 +1,4 @@
+import type { ReactElement } from "react";
 import { cx } from "../utilities/cx";
 import { spaceVar, type StyleWithVars } from "../utilities/props";
 import type { BaseLayoutProps, Space } from "./types";
@@ -20,7 +21,7 @@ export function Sidebar({
   style,
   children,
   ...rest
-}: SidebarProps) {
+}: SidebarProps): ReactElement {
   const inlineStyle: StyleWithVars = {
     ...style,
     "--ps-gap": spaceVar(gap),

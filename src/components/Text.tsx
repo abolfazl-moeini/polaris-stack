@@ -1,4 +1,4 @@
-import type { ElementType, HTMLAttributes, ReactNode } from "react";
+import type { ElementType, HTMLAttributes, ReactElement, ReactNode } from "react";
 import { cx } from "../utilities/cx";
 
 type TextProps = HTMLAttributes<HTMLElement> & {
@@ -11,7 +11,7 @@ export function Text({
   className,
   children,
   ...rest
-}: TextProps) {
+}: TextProps): ReactElement {
   const C: any = Comp;
   return (
     <C className={cx("ps-text", className)} {...rest}>

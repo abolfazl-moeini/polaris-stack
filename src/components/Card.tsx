@@ -1,11 +1,11 @@
-import type { HTMLAttributes, ReactNode } from "react";
+import type { HTMLAttributes, ReactElement, ReactNode } from "react";
 import { cx } from "../utilities/cx";
 
 type CardProps = HTMLAttributes<HTMLDivElement> & {
   children?: ReactNode;
 };
 
-export function Card({ className, children, ...rest }: CardProps) {
+export function Card({ className, children, ...rest }: CardProps): ReactElement {
   return (
     <div className={cx("ps-card", className)} {...rest}>
       {children}
