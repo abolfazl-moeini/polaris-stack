@@ -1,12 +1,16 @@
 .ps-box {
   box-sizing: border-box;
-  padding: var(--ps-p);
-  padding-inline: var(--ps-px);
-  padding-block: var(--ps-py);
-  padding-block-start: var(--ps-pt);
-  padding-inline-end: var(--ps-pr);
-  padding-block-end: var(--ps-pb);
-  padding-inline-start: var(--ps-pl);
+  --ps-p: initial;
+  --ps-px: initial;
+  --ps-py: initial;
+  --ps-pt: initial;
+  --ps-pr: initial;
+  --ps-pb: initial;
+  --ps-pl: initial;
+  padding-block-start: var(--ps-pt, var(--ps-py, var(--ps-p, 0)));
+  padding-block-end: var(--ps-pb, var(--ps-py, var(--ps-p, 0)));
+  padding-inline-start: var(--ps-pl, var(--ps-px, var(--ps-p, 0)));
+  padding-inline-end: var(--ps-pr, var(--ps-px, var(--ps-p, 0)));
 }
 
 .ps-stack {

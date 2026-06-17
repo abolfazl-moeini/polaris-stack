@@ -1,5 +1,5 @@
 {
-  "name": "@wpsk/polaris-stack",
+  "name": "@wpdev/polaris-stack",
   "version": "0.1.0",
   "description": "Polaris Stack — CSS-variable design foundation with separated layout and style.",
   "type": "module",
