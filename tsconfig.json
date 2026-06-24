@@ -16,7 +16,6 @@
     "baseUrl": ".",
     "paths": {
       "react": ["./react.d.ts"],
-      "react-dom": ["./react.d.ts"],
       "react/jsx-runtime": ["./react.d.ts"]
     }
   },

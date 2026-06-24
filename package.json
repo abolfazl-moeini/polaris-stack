@@ -1,7 +1,7 @@
 {
   "name": "@wpdev/polaris-stack",
-  "version": "1.0.0",
-  "description": "Polaris Stack — CSS-variable design foundation with separated layout and style.",
+  "version": "2.0.0",
+  "description": "Polaris Stack — CSS-variable design foundation with separated layout and style. Tokenized themes, Every Layout primitives, and framework-neutral React/Preact components for WordPress admin UIs.",
   "type": "module",
   "sideEffects": [
     "**/*.css"
@@ -18,6 +18,18 @@
       "import": "./dist/index.js"
     },
     "./styles.css": "./dist/styles.css",
+    "./layout": {
+      "types": "./dist/layout/index.d.ts",
+      "import": "./dist/layout/index.js"
+    },
+    "./components": {
+      "types": "./dist/components/index.d.ts",
+      "import": "./dist/components/index.js"
+    },
+    "./theme": {
+      "types": "./dist/theme/index.d.ts",
+      "import": "./dist/theme/index.js"
+    },
     "./theme-script": {
       "types": "./dist/theme/script.d.ts",
       "import": "./dist/theme/script.js"
@@ -38,7 +50,9 @@
   },
   "devDependencies": {
     "@preact/compat": "^18.3.2",
+    "cssnano": "^7.0.6",
     "esbuild": ">=0.20",
+    "postcss": "^8.4.49",
     "react": "npm:@preact/compat@^18.3.2",
     "typescript": ">=5.0"
   },

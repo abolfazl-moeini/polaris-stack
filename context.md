@@ -229,3 +229,36 @@ packages/polaris-stack/
 - TypeScript only.
 
 For historical phased implementation plans, the original documents were located in `../../PolarisStack/` before being consolidated here.
+
+---
+
+## 12. Test policy
+
+Tests live at `../../tests/packages/polaris-stack/` (monorepo root). Run:
+
+```bash
+npm test -- --testPathPattern=polaris
+```
+
+### What we test
+
+| Layer | File | What it asserts |
+|-------|------|-----------------|
+| Theme script | `theme.test.ts` | `setPolarisTheme`, `subscribePolarisTheme`, `themechange` event, init script, storage errors |
+| Layout CSS | `layout.test.ts` | No visual properties in layout rules, token references resolve, render tests per primitive |
+| Components CSS | `components.test.ts` | Token references resolve, render + a11y attributes on styled components |
+| Smoke | `smoke.test.js` | Built bundle renders without runtime `<style>` tags |
+
+### What we deliberately don't test
+
+- Visual snapshot / screenshot regression (out of scope for v2).
+- Real-browser RTL or forced-colors rendering (jsdom only).
+- Bundle size budgets in CI (manual check after large changes).
+
+### Adding a new primitive or component
+
+1. One `.tsx` file + one CSS block in the correct `.css` file.
+2. Export from `index.ts`.
+3. Add a render test asserting `class` + CSS vars.
+4. For styled components, assert accessibility attributes (`role`, `aria-*`).
+5. Run `npm run build` in `packages/polaris-stack/` so `smoke.test.js` sees fresh `dist/`.

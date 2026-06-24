@@ -1,3 +1,5 @@
+/* Layout primitives — Every Layout inspired (https://every-layout.dev) */
+
 .ps-box {
   box-sizing: border-box;
   --ps-p: initial;
@@ -34,10 +36,19 @@
   padding-inline: var(--ps-gutters, 0);
 }
 
+.ps-container {
+  box-sizing: border-box;
+  max-inline-size: var(--ps-max, var(--ps-size-content));
+  padding-inline: var(--ps-gutters, 0);
+}
+
 .ps-grid {
   display: grid;
   gap: var(--ps-gap, var(--ps-space-4));
-  grid-template-columns: repeat(auto-fit, minmax(var(--ps-min, 16rem), 1fr));
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(var(--ps-min, var(--ps-grid-min)), 1fr)
+  );
 }
 
 .ps-sidebar {
@@ -72,7 +83,6 @@
   flex-basis: calc((var(--ps-threshold, 30rem) - 100%) * 999);
 }
 
-/* When limit is set, children beyond the limit span full width (Every Layout). */
 .ps-switcher[data-limit="2"] > :nth-child(n + 3),
 .ps-switcher[data-limit="2"] > :nth-child(n + 3) ~ * {
   flex-basis: 100%;
@@ -106,4 +116,100 @@
 .ps-switcher[data-limit="8"] > :nth-child(n + 9),
 .ps-switcher[data-limit="8"] > :nth-child(n + 9) ~ * {
   flex-basis: 100%;
+}
+
+.ps-switcher[data-limit="9"] > :nth-child(n + 10),
+.ps-switcher[data-limit="9"] > :nth-child(n + 10) ~ * {
+  flex-basis: 100%;
+}
+
+.ps-switcher[data-limit="10"] > :nth-child(n + 11),
+.ps-switcher[data-limit="10"] > :nth-child(n + 11) ~ * {
+  flex-basis: 100%;
+}
+
+.ps-switcher[data-limit="11"] > :nth-child(n + 12),
+.ps-switcher[data-limit="11"] > :nth-child(n + 12) ~ * {
+  flex-basis: 100%;
+}
+
+.ps-switcher[data-limit="12"] > :nth-child(n + 13),
+.ps-switcher[data-limit="12"] > :nth-child(n + 13) ~ * {
+  flex-basis: 100%;
+}
+
+.ps-divider {
+  box-sizing: border-box;
+  margin: 0;
+  inline-size: 100%;
+  block-size: var(--ps-divider-size, 1px);
+  border-width: 0;
+  border-style: none;
+  /* Uses layout-only --ps-divider-line token (maps to border color in tokens.css). */
+  background-color: var(--ps-divider-line);
+}
+
+.ps-cover {
+  display: flex;
+  flex-direction: column;
+  min-block-size: var(--ps-cover-min, var(--ps-size-cover));
+  gap: var(--ps-gap, var(--ps-space-4));
+}
+
+.ps-cover > :first-child:not(:only-child) {
+  margin-block-end: auto;
+}
+
+.ps-cover > :last-child:not(:only-child) {
+  margin-block-start: auto;
+}
+
+.ps-cover > :only-child {
+  margin-block: auto;
+}
+
+.ps-frame {
+  aspect-ratio: var(--ps-frame-ratio, 16 / 9);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ps-frame > * {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+}
+
+.ps-reel {
+  display: flex;
+  gap: var(--ps-gap, var(--ps-space-4));
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.ps-reel > * {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+}
+
+.ps-imposter {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: var(--ps-imposter-position, center);
+  justify-content: var(--ps-imposter-position, center);
+  pointer-events: none;
+}
+
+.ps-imposter > * {
+  pointer-events: auto;
+}
+
+.ps-imposter-fixed {
+  position: fixed;
+  z-index: var(--ps-z-modal);
 }

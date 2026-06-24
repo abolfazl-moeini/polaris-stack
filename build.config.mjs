@@ -1,18 +1,30 @@
 import * as esbuild from "esbuild";
-import { readFileSync, writeFileSync, rmSync, mkdirSync, existsSync } from "node:fs";
+import { readFileSync, rmSync, mkdirSync, existsSync } from "node:fs";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
+import { buildStylesCss } from "./scripts/build-css.mjs";
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const isDev = process.argv.includes("--dev");
-const outDir = "dist";
+const outDir = path.join(__dirname, "dist");
 
-// Clean for reliable builds (no stale artifacts)
+const pkg = JSON.parse(
+  readFileSync(path.join(__dirname, "package.json"), "utf8"),
+);
+
 if (existsSync(outDir)) {
   rmSync(outDir, { recursive: true, force: true });
 }
 mkdirSync(outDir, { recursive: true });
 
 await esbuild.build({
-  entryPoints: ["src/index.ts", "src/theme/script.ts"],
+  entryPoints: [
+    "src/index.ts",
+    "src/layout/index.ts",
+    "src/components/index.ts",
+    "src/theme/index.ts",
+    "src/theme/script.ts",
+  ],
   outdir: outDir,
   format: "esm",
   platform: "neutral",
@@ -26,11 +38,7 @@ await esbuild.build({
   outExtension: { ".js": ".js" },
 });
 
-const globalCss = [
-  readFileSync("src/theme/tokens.css", "utf8"),
-  readFileSync("src/theme/themes.css", "utf8"),
-  readFileSync("src/theme/base.css", "utf8"),
-  readFileSync("src/layout/layout.css", "utf8"),
-  readFileSync("src/components/components.css", "utf8"),
-].join("\n");
-writeFileSync(path.join(outDir, "styles.css"), globalCss, "utf8");
+await buildStylesCss(outDir, {
+  minify: !isDev,
+  version: pkg.version,
+});

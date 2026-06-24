@@ -1,13 +1,19 @@
 import type { PolarisTheme } from "./types";
 
 const DEFAULT_STORAGE_KEY = "polaris-theme";
+export const POLARIS_THEME_CHANGE = "polaris-themechange";
 
 export function getStoredPolarisTheme(
   storageKey = DEFAULT_STORAGE_KEY,
 ): PolarisTheme | null {
   try {
     const value = localStorage.getItem(storageKey);
-    if (value === "light" || value === "dark" || value === "system") {
+    if (
+      value === "light" ||
+      value === "dark" ||
+      value === "system" ||
+      value === "hc"
+    ) {
       return value;
     }
     return null;
@@ -16,7 +22,7 @@ export function getStoredPolarisTheme(
   }
 }
 
-export function resolvePolarisTheme(theme: PolarisTheme): "light" | "dark" {
+export function resolvePolarisTheme(theme: PolarisTheme): "light" | "dark" | "hc" {
   if (theme === "system") {
     if (typeof matchMedia !== "undefined") {
       return matchMedia("(prefers-color-scheme: dark)").matches
@@ -28,17 +34,67 @@ export function resolvePolarisTheme(theme: PolarisTheme): "light" | "dark" {
   return theme;
 }
 
+function dispatchThemeChange(resolved: "light" | "dark" | "hc"): void {
+  if (typeof document === "undefined") return;
+  document.dispatchEvent(
+    new CustomEvent(POLARIS_THEME_CHANGE, { detail: { theme: resolved } }),
+  );
+}
+
 export function setPolarisTheme(
   theme: PolarisTheme,
   storageKey = DEFAULT_STORAGE_KEY,
 ): void {
   if (typeof document === "undefined") return;
-  document.documentElement.dataset.theme = resolvePolarisTheme(theme);
+  const resolved = resolvePolarisTheme(theme);
+  document.documentElement.dataset.theme = resolved;
+  dispatchThemeChange(resolved);
   try {
     localStorage.setItem(storageKey, theme);
   } catch {
     // Storage may be unavailable in private mode.
   }
+}
+
+export function subscribePolarisTheme(
+  onChange: (resolved: "light" | "dark" | "hc") => void,
+  options?: { storageKey?: string },
+): () => void {
+  if (typeof document === "undefined" || typeof window === "undefined") {
+    return () => {};
+  }
+
+  const storageKey = options?.storageKey ?? DEFAULT_STORAGE_KEY;
+
+  const notify = () => {
+    const stored = getStoredPolarisTheme(storageKey) ?? "system";
+    onChange(resolvePolarisTheme(stored));
+  };
+
+  const onThemeChange = (event: Event) => {
+    const detail = (event as CustomEvent<{ theme: "light" | "dark" | "hc" }>)
+      .detail;
+    if (detail?.theme) {
+      onChange(detail.theme);
+      return;
+    }
+    notify();
+  };
+
+  const media =
+    typeof matchMedia !== "undefined"
+      ? matchMedia("(prefers-color-scheme: dark)")
+      : null;
+
+  document.addEventListener(POLARIS_THEME_CHANGE, onThemeChange);
+  media?.addEventListener("change", notify);
+
+  notify();
+
+  return () => {
+    document.removeEventListener(POLARIS_THEME_CHANGE, onThemeChange);
+    media?.removeEventListener("change", notify);
+  };
 }
 
 export function createPolarisThemeInitScript(options?: {
@@ -47,15 +103,13 @@ export function createPolarisThemeInitScript(options?: {
 }): string {
   const storageKey = options?.storageKey ?? DEFAULT_STORAGE_KEY;
   const defaultTheme = options?.defaultTheme ?? "system";
-  return (
-    `(function(){try{` +
-    `var k=${JSON.stringify(storageKey)};` +
-    `var d=${JSON.stringify(defaultTheme)};` +
-    `var t=localStorage.getItem(k);` +
-    `var m=matchMedia("(prefers-color-scheme: dark)").matches;` +
-    `var s=function(v){return v==="system"?(m?"dark":"light"):v;};` +
-    `var r=t?s(t):(d==="system"?(m?"dark":"light"):d);` +
-    `document.documentElement.dataset.theme=r;` +
-    `}catch(e){}})();`
-  );
+  return `(function(){try{
+var k=${JSON.stringify(storageKey)};
+var d=${JSON.stringify(defaultTheme)};
+var t=localStorage.getItem(k);
+var m=matchMedia("(prefers-color-scheme: dark)").matches;
+var s=function(v){return v==="system"?(m?"dark":"light"):v;};
+var r=t?s(t):(d==="system"?(m?"dark":"light"):d);
+document.documentElement.dataset.theme=r;
+}catch(e){}})();`;
 }

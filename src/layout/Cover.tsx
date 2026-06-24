@@ -4,36 +4,30 @@ import { polymorphicElement } from "../utilities/polymorphic";
 import { spaceVar, type StyleWithVars } from "../utilities/props";
 import type { BaseLayoutProps, Space } from "./types";
 
-type SidebarProps = BaseLayoutProps & {
+type CoverProps = BaseLayoutProps & {
+  min?: string;
   gap?: Space;
-  side?: "start" | "end";
-  sideWidth?: string;
-  contentMin?: string;
   style?: StyleWithVars;
 };
 
-export function Sidebar({
+export function Cover({
   as,
+  min = "var(--ps-size-cover)",
   gap = "4",
-  side = "start",
-  sideWidth = "20rem",
-  contentMin = "50%",
   className,
   style,
   children,
   ...rest
-}: SidebarProps): ReactElement {
+}: CoverProps): ReactElement {
   return polymorphicElement(
     as,
     "div",
     {
-      className: cx("ps-sidebar", className),
-      "data-side": side,
+      className: cx("ps-cover", className),
       style: {
         ...style,
+        "--ps-cover-min": min,
         "--ps-gap": spaceVar(gap),
-        "--ps-side-width": sideWidth,
-        "--ps-content-min": contentMin,
       },
       ...rest,
     },

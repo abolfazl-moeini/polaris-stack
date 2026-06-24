@@ -1,21 +1,45 @@
 import type { ElementType, HTMLAttributes, ReactElement, ReactNode } from "react";
 import { cx } from "../utilities/cx";
+import { polymorphicElement } from "../utilities/polymorphic";
 
-type TextProps = HTMLAttributes<HTMLElement> & {
+export type TextSize = "xs" | "sm" | "base" | "lg" | "xl";
+export type TextWeight = "normal" | "medium" | "semibold" | "bold";
+export type TextTone = "default" | "muted" | "subtle" | "strong";
+
+type TextProps = {
   as?: ElementType;
+  size?: TextSize;
+  weight?: TextWeight;
+  truncate?: boolean;
+  tone?: TextTone;
   children?: ReactNode;
-};
+  className?: string;
+} & Omit<HTMLAttributes<HTMLElement>, "children" | "className">;
 
 export function Text({
-  as: Comp = "p",
+  as = "p",
+  size = "base",
+  weight = "normal",
+  truncate = false,
+  tone = "default",
   className,
   children,
   ...rest
 }: TextProps): ReactElement {
-  const C: any = Comp;
-  return (
-    <C className={cx("ps-text", className)} {...rest}>
-      {children}
-    </C>
+  return polymorphicElement(
+    as,
+    "p",
+    {
+      className: cx(
+        "ps-text",
+        `ps-text-${size}`,
+        `ps-text-weight-${weight}`,
+        `ps-text-tone-${tone}`,
+        truncate && "ps-text-truncate",
+        className,
+      ),
+      ...rest,
+    },
+    children,
   );
 }

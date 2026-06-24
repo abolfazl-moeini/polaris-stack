@@ -6,6 +6,67 @@
   --ps-color-primary: #60a5fa;
   --ps-color-primary-fg: #020617;
   --ps-color-soft: #1e3a5f;
-  --ps-color-soft-fg: #bfdbfe;
+  --ps-color-soft-fg: #e0f2fe;
+
+  --ps-color-success: #22c55e;
+  --ps-color-success-fg: #052e16;
+  --ps-color-danger: #ef4444;
+  --ps-color-danger-fg: #450a0a;
+  --ps-color-warning: #f59e0b;
+  --ps-color-warning-fg: #451a03;
+  --ps-color-info: #60a5fa;
+  --ps-color-info-fg: #020617;
+
   color-scheme: dark;
+}
+
+[data-theme="hc"] {
+  --ps-color-bg: #000000;
+  --ps-color-fg: #ffffff;
+  --ps-color-muted: #1a1a1a;
+  --ps-color-border: #ffffff;
+  --ps-color-primary: #ffff00;
+  --ps-color-primary-fg: #000000;
+  --ps-color-soft: #1a1a1a;
+  --ps-color-soft-fg: #ffffff;
+
+  --ps-color-success: #00ff00;
+  --ps-color-success-fg: #000000;
+  --ps-color-danger: #ff0000;
+  --ps-color-danger-fg: #000000;
+  --ps-color-warning: #ffff00;
+  --ps-color-warning-fg: #000000;
+  --ps-color-info: #00ffff;
+  --ps-color-info-fg: #000000;
+
+  color-scheme: dark;
+}
+
+@media (forced-colors: active) {
+  :root,
+  [data-theme="dark"],
+  [data-theme="hc"] {
+    --ps-color-bg: Canvas;
+    --ps-color-fg: CanvasText;
+    --ps-color-muted: Canvas;
+    --ps-color-border: CanvasText;
+    --ps-color-primary: LinkText;
+    --ps-color-primary-fg: Canvas;
+    --ps-color-soft: Canvas;
+    --ps-color-soft-fg: CanvasText;
+    --ps-color-success: CanvasText;
+    --ps-color-success-fg: Canvas;
+    --ps-color-danger: CanvasText;
+    --ps-color-danger-fg: Canvas;
+    --ps-color-warning: CanvasText;
+    --ps-color-warning-fg: Canvas;
+    --ps-color-info: LinkText;
+    --ps-color-info-fg: Canvas;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --ps-motion-duration: 0ms;
+  }
 }

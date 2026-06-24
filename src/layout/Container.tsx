@@ -4,13 +4,13 @@ import { polymorphicElement } from "../utilities/polymorphic";
 import { spaceVar, type StyleWithVars } from "../utilities/props";
 import type { BaseLayoutProps, Space } from "./types";
 
-type CenterProps = BaseLayoutProps & {
+type ContainerProps = BaseLayoutProps & {
   max?: string;
   gutters?: Space;
   style?: StyleWithVars;
 };
 
-export function Center({
+export function Container({
   as,
   max = "var(--ps-size-content)",
   gutters,
@@ -18,7 +18,7 @@ export function Center({
   style,
   children,
   ...rest
-}: CenterProps): ReactElement {
+}: ContainerProps): ReactElement {
   const inlineStyle: StyleWithVars = {
     ...style,
     "--ps-max": max,
@@ -30,7 +30,7 @@ export function Center({
     as,
     "div",
     {
-      className: cx("ps-center", className),
+      className: cx("ps-container", className),
       style: inlineStyle,
       ...rest,
     },

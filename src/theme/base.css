@@ -1,9 +1,6 @@
-html {
-  background-color: var(--ps-color-bg);
-}
-
-body {
+/* Scoped base — avoids clobbering WordPress admin html/body styles. */
+.ps-scope {
   color: var(--ps-color-fg);
   font-family: var(--ps-font-body);
-  margin: 0;
+  background-color: var(--ps-color-bg);
 }

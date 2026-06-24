@@ -7,10 +7,21 @@
   --ps-color-primary-fg: #ffffff;
   --ps-color-soft: #eff6ff;
   --ps-color-soft-fg: #1d4ed8;
+
+  --ps-color-success: #16a34a;
+  --ps-color-success-fg: #ffffff;
+  --ps-color-danger: #dc2626;
+  --ps-color-danger-fg: #ffffff;
+  --ps-color-warning: #d97706;
+  --ps-color-warning-fg: #ffffff;
+  --ps-color-info: #2563eb;
+  --ps-color-info-fg: #ffffff;
+
   color-scheme: light;
 
   --ps-font-body: system-ui, sans-serif;
   --ps-font-heading: var(--ps-font-body);
+  --ps-font-mono: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, monospace;
 
   --ps-space-0: 0;
   --ps-space-1: 0.25rem;
@@ -22,10 +33,26 @@
 
   --ps-size-content: 60ch;
   --ps-size-wide: 90rem;
+  --ps-size-cover: 100vh;
 
   --ps-radius-1: 0.25rem;
   --ps-radius-2: 0.5rem;
+  --ps-radius-full: 9999px;
 
   --ps-shadow-1: 0 1px 2px rgb(0 0 0 / 0.08);
   --ps-shadow-2: 0 4px 6px rgb(0 0 0 / 0.08);
+  --ps-shadow-3: 0 10px 15px rgb(0 0 0 / 0.1);
+  --ps-shadow-4: 0 20px 25px rgb(0 0 0 / 0.12);
+
+  --ps-z-dropdown: 1000;
+  --ps-z-modal: 1100;
+  --ps-z-toast: 1200;
+  --ps-z-tooltip: 1300;
+
+  --ps-divider-size: 1px;
+  --ps-divider-line: var(--ps-color-border);
+  --ps-grid-min: 16rem;
+  --ps-frame-ratio: 16 / 9;
+
+  --ps-motion-duration: 0.15s;
 }

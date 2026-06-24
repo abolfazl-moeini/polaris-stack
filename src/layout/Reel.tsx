@@ -4,37 +4,25 @@ import { polymorphicElement } from "../utilities/polymorphic";
 import { spaceVar, type StyleWithVars } from "../utilities/props";
 import type { BaseLayoutProps, Space } from "./types";
 
-type SidebarProps = BaseLayoutProps & {
+type ReelProps = BaseLayoutProps & {
   gap?: Space;
-  side?: "start" | "end";
-  sideWidth?: string;
-  contentMin?: string;
   style?: StyleWithVars;
 };
 
-export function Sidebar({
+export function Reel({
   as,
   gap = "4",
-  side = "start",
-  sideWidth = "20rem",
-  contentMin = "50%",
   className,
   style,
   children,
   ...rest
-}: SidebarProps): ReactElement {
+}: ReelProps): ReactElement {
   return polymorphicElement(
     as,
     "div",
     {
-      className: cx("ps-sidebar", className),
-      "data-side": side,
-      style: {
-        ...style,
-        "--ps-gap": spaceVar(gap),
-        "--ps-side-width": sideWidth,
-        "--ps-content-min": contentMin,
-      },
+      className: cx("ps-reel", className),
+      style: { ...style, "--ps-gap": spaceVar(gap) },
       ...rest,
     },
     children,

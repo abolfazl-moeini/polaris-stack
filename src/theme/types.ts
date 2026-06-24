@@ -1,1 +1,1 @@
-export type PolarisTheme = "light" | "dark" | "system";
+export type PolarisTheme = "light" | "dark" | "system" | "hc";

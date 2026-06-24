@@ -1,5 +1,13 @@
 export { Button } from "./Button";
-export type { ButtonVariant } from "./Button";
+export type { ButtonVariant, ButtonSize } from "./Button";
 export { Card } from "./Card";
 export { Text } from "./Text";
+export type { TextSize, TextWeight, TextTone } from "./Text";
 export { Heading } from "./Heading";
+export { IconButton } from "./IconButton";
+export { Badge } from "./Badge";
+export type { BadgeTone } from "./Badge";
+export { Alert } from "./Alert";
+export type { AlertTone } from "./Alert";
+export { Spinner } from "./Spinner";
+export { Kbd } from "./Kbd";

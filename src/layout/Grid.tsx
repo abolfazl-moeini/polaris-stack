@@ -1,5 +1,6 @@
 import type { ReactElement } from "react";
 import { cx } from "../utilities/cx";
+import { polymorphicElement } from "../utilities/polymorphic";
 import { spaceVar, type StyleWithVars } from "../utilities/props";
 import type { BaseLayoutProps, Space } from "./types";
 
@@ -10,23 +11,29 @@ type GridProps = BaseLayoutProps & {
 };
 
 export function Grid({
-  as: Comp = "div",
+  as,
   gap = "4",
-  min = "16rem",
+  min,
   className,
   style,
   children,
   ...rest
 }: GridProps): ReactElement {
-  const C: any = Comp;
   const inlineStyle: StyleWithVars = {
     ...style,
     "--ps-gap": spaceVar(gap),
-    "--ps-min": min,
   };
-  return (
-    <C className={cx("ps-grid", className)} style={inlineStyle} {...rest}>
-      {children}
-    </C>
+  if (min != null) {
+    inlineStyle["--ps-min"] = min;
+  }
+  return polymorphicElement(
+    as,
+    "div",
+    {
+      className: cx("ps-grid", className),
+      style: inlineStyle,
+      ...rest,
+    },
+    children,
   );
 }

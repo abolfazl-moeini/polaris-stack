@@ -4,4 +4,6 @@ export {
   getStoredPolarisTheme,
   resolvePolarisTheme,
   createPolarisThemeInitScript,
+  subscribePolarisTheme,
+  POLARIS_THEME_CHANGE,
 } from "./script";
