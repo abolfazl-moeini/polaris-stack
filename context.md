@@ -26,7 +26,7 @@ Rules:
 ### 2.1 Theming via CSS Custom Properties only
 - All design tokens live as `--ps-*` CSS variables.
 - Light theme in `:root`.
-- Dark theme overrides under `[data-theme="dark"]`.
+- Dark / high-contrast / brand overrides under `[data-theme="dark|hc|brand"]`.
 - Switching is done by setting `document.documentElement.dataset.theme`.
 - Zero React re-renders. SSR-safe. No `ThemeProvider` or context in v1.
 
@@ -97,7 +97,8 @@ export {
   createPolarisThemeInitScript,
 } from "./theme/script";
 
-export type PolarisTheme = "light" | "dark" | "system";
+export type PolarisTheme = "light" | "dark" | "system" | "hc" | "brand";
+export type ResolvedPolarisTheme = "light" | "dark" | "hc" | "brand";
 ```
 
 Exports map in `package.json`:

@@ -1,20 +1,23 @@
-import type { PolarisTheme } from "./types";
+import type { PolarisTheme, ResolvedPolarisTheme } from "./types";
 
 const DEFAULT_STORAGE_KEY = "polaris-theme";
 export const POLARIS_THEME_CHANGE = "polaris-themechange";
+
+const STORED_THEMES: ReadonlySet<string> = new Set([
+  "light",
+  "dark",
+  "system",
+  "hc",
+  "brand",
+]);
 
 export function getStoredPolarisTheme(
   storageKey = DEFAULT_STORAGE_KEY,
 ): PolarisTheme | null {
   try {
     const value = localStorage.getItem(storageKey);
-    if (
-      value === "light" ||
-      value === "dark" ||
-      value === "system" ||
-      value === "hc"
-    ) {
-      return value;
+    if (value != null && STORED_THEMES.has(value)) {
+      return value as PolarisTheme;
     }
     return null;
   } catch {
@@ -22,7 +25,7 @@ export function getStoredPolarisTheme(
   }
 }
 
-export function resolvePolarisTheme(theme: PolarisTheme): "light" | "dark" | "hc" {
+export function resolvePolarisTheme(theme: PolarisTheme): ResolvedPolarisTheme {
   if (theme === "system") {
     if (typeof matchMedia !== "undefined") {
       return matchMedia("(prefers-color-scheme: dark)").matches
@@ -34,7 +37,7 @@ export function resolvePolarisTheme(theme: PolarisTheme): "light" | "dark" | "hc
   return theme;
 }
 
-function dispatchThemeChange(resolved: "light" | "dark" | "hc"): void {
+function dispatchThemeChange(resolved: ResolvedPolarisTheme): void {
   if (typeof document === "undefined") return;
   document.dispatchEvent(
     new CustomEvent(POLARIS_THEME_CHANGE, { detail: { theme: resolved } }),
@@ -57,7 +60,7 @@ export function setPolarisTheme(
 }
 
 export function subscribePolarisTheme(
-  onChange: (resolved: "light" | "dark" | "hc") => void,
+  onChange: (resolved: ResolvedPolarisTheme) => void,
   options?: { storageKey?: string },
 ): () => void {
   if (typeof document === "undefined" || typeof window === "undefined") {
@@ -72,7 +75,7 @@ export function subscribePolarisTheme(
   };
 
   const onThemeChange = (event: Event) => {
-    const detail = (event as CustomEvent<{ theme: "light" | "dark" | "hc" }>)
+    const detail = (event as CustomEvent<{ theme: ResolvedPolarisTheme }>)
       .detail;
     if (detail?.theme) {
       onChange(detail.theme);

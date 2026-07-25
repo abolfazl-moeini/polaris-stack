@@ -42,10 +42,34 @@
   color-scheme: dark;
 }
 
+/* Sample brand palette — prove multi-theme via tokens only (no layout changes). */
+[data-theme="brand"] {
+  --ps-color-bg: #f0fdfa;
+  --ps-color-fg: #134e4a;
+  --ps-color-muted: #ccfbf1;
+  --ps-color-border: #5eead4;
+  --ps-color-primary: #0d9488;
+  --ps-color-primary-fg: #ffffff;
+  --ps-color-soft: #99f6e4;
+  --ps-color-soft-fg: #115e59;
+
+  --ps-color-success: #059669;
+  --ps-color-success-fg: #ffffff;
+  --ps-color-danger: #e11d48;
+  --ps-color-danger-fg: #ffffff;
+  --ps-color-warning: #d97706;
+  --ps-color-warning-fg: #ffffff;
+  --ps-color-info: #0891b2;
+  --ps-color-info-fg: #ffffff;
+
+  color-scheme: light;
+}
+
 @media (forced-colors: active) {
   :root,
   [data-theme="dark"],
-  [data-theme="hc"] {
+  [data-theme="hc"],
+  [data-theme="brand"] {
     --ps-color-bg: Canvas;
     --ps-color-fg: CanvasText;
     --ps-color-muted: Canvas;

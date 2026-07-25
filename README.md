@@ -90,7 +90,7 @@ Never set `background-color` or `color` directly on Polaris components — overr
 ```ts
 import { setPolarisTheme, subscribePolarisTheme } from "@wpdev/polaris-stack";
 
-setPolarisTheme("dark"); // "light" | "dark" | "system" | "hc"
+setPolarisTheme("dark"); // "light" | "dark" | "system" | "hc" | "brand"
 
 subscribePolarisTheme((resolved) => {
   console.log(resolved); // follows OS when stored preference is "system"

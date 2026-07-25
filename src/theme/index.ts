@@ -1,4 +1,4 @@
-export type { PolarisTheme } from "./types";
+export type { PolarisTheme, ResolvedPolarisTheme } from "./types";
 export {
   setPolarisTheme,
   getStoredPolarisTheme,
