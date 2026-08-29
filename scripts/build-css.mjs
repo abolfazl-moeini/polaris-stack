@@ -1,4 +1,5 @@
 import { readFileSync, writeFileSync, rmSync } from "node:fs";
+import { execSync } from "node:child_process";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import * as esbuild from "esbuild";
@@ -7,6 +8,25 @@ import cssnano from "cssnano";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, "..");
+
+function resolveBuildMeta(overrides = {}) {
+  let sha = overrides.sha;
+  if (!sha) {
+    try {
+      sha = execSync("git rev-parse --short HEAD", {
+        cwd: root,
+        stdio: ["ignore", "pipe", "ignore"],
+      })
+        .toString()
+        .trim();
+    } catch {
+      // Not a git checkout (e.g. packed tarball) — stamp is informational.
+      sha = "unknown";
+    }
+  }
+  const builtAt = overrides.builtAt ?? new Date().toISOString();
+  return { sha, builtAt };
+}
 
 const CSS_FILES = [
   "src/theme/tokens.css",
@@ -75,7 +95,8 @@ export async function buildStylesCss(outDir, options = {}) {
     rmSync(`${bundleFile}.map`, { force: true });
   }
 
-  const header = `/*! @wpdev/polaris-stack v${version} | MIT | layout/style separated design foundation */\n`;
+  const { sha, builtAt } = resolveBuildMeta(options);
+  const header = `/*! @wpdev/polaris-stack v${version}+${sha} @ ${builtAt} | MIT | layout/style separated design foundation */\n`;
   const mapRef = result.map ? "\n/*# sourceMappingURL=styles.css.map */\n" : "";
 
   writeFileSync(
