@@ -31,7 +31,6 @@ export function Switcher({
         ...style,
         "--ps-gap": spaceVar(gap),
         "--ps-threshold": threshold,
-        ...(limit != null ? { "--ps-limit": String(limit) } : {}),
       },
       ...rest,
     },
