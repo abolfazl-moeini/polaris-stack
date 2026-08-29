@@ -83,59 +83,14 @@
   flex-basis: calc((var(--ps-threshold, 30rem) - 100%) * 999);
 }
 
-.ps-switcher[data-limit="2"] > :nth-child(n + 3),
-.ps-switcher[data-limit="2"] > :nth-child(n + 3) ~ * {
-  flex-basis: 100%;
-}
-
-.ps-switcher[data-limit="3"] > :nth-child(n + 4),
-.ps-switcher[data-limit="3"] > :nth-child(n + 4) ~ * {
-  flex-basis: 100%;
-}
-
-.ps-switcher[data-limit="4"] > :nth-child(n + 5),
-.ps-switcher[data-limit="4"] > :nth-child(n + 5) ~ * {
-  flex-basis: 100%;
-}
-
-.ps-switcher[data-limit="5"] > :nth-child(n + 6),
-.ps-switcher[data-limit="5"] > :nth-child(n + 6) ~ * {
-  flex-basis: 100%;
-}
-
-.ps-switcher[data-limit="6"] > :nth-child(n + 7),
-.ps-switcher[data-limit="6"] > :nth-child(n + 7) ~ * {
-  flex-basis: 100%;
-}
-
-.ps-switcher[data-limit="7"] > :nth-child(n + 8),
-.ps-switcher[data-limit="7"] > :nth-child(n + 8) ~ * {
-  flex-basis: 100%;
-}
-
-.ps-switcher[data-limit="8"] > :nth-child(n + 9),
-.ps-switcher[data-limit="8"] > :nth-child(n + 9) ~ * {
-  flex-basis: 100%;
-}
-
-.ps-switcher[data-limit="9"] > :nth-child(n + 10),
-.ps-switcher[data-limit="9"] > :nth-child(n + 10) ~ * {
-  flex-basis: 100%;
-}
-
-.ps-switcher[data-limit="10"] > :nth-child(n + 11),
-.ps-switcher[data-limit="10"] > :nth-child(n + 11) ~ * {
-  flex-basis: 100%;
-}
-
-.ps-switcher[data-limit="11"] > :nth-child(n + 12),
-.ps-switcher[data-limit="11"] > :nth-child(n + 12) ~ * {
-  flex-basis: 100%;
-}
-
-.ps-switcher[data-limit="12"] > :nth-child(n + 13),
-.ps-switcher[data-limit="12"] > :nth-child(n + 13) ~ * {
-  flex-basis: 100%;
+/* Generic per-row cap: at most --ps-limit items share a row. No hardcoded
+   nth-child rules per limit value — the attribute plus CSS variable cover
+   every limit. */
+.ps-switcher[data-limit]:not([data-limit=""]) > * {
+  min-inline-size: calc(
+    (100% - (var(--ps-limit, 1) - 1) * var(--ps-gap, var(--ps-space-4))) /
+      var(--ps-limit, 1)
+  );
 }
 
 .ps-divider {
