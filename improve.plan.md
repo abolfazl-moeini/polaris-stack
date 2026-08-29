@@ -340,25 +340,25 @@ Ponytail guardrails. These are listed so we don't drift:
 
 The package is at "v2" when all of the following are true:
 
-- [ ] A consumer can scaffold a plugin with `frontendStack: polaris` and
+- [x] A consumer can scaffold a plugin with `frontendStack: polaris` and
       ship a working admin page using only primitives + components, no
       custom CSS, no hex literals, no `as={...}` that needs `any`.
-- [ ] The dark theme passes WCAG AA on all token-pair combinations used by
+- [x] The dark theme passes WCAG AA on all token-pair combinations used by
       the shipped components.
-- [ ] Every `--ps-*` token referenced by `components.css` or `layout.css`
+- [x] Every `--ps-*` token referenced by `components.css` or `layout.css`
       is defined in `tokens.css`. (Enforced by W1.6.)
-- [ ] `dist/styles.css` is minified, source-mapped, license-headered,
+- [x] `dist/styles.css` is minified, source-mapped, license-headered,
       version-stamped.
-- [ ] `npm run build && npm test` runs in <10s on cold cache.
-- [ ] Every new primitive ships with: 1 tsx file, 1 CSS block, 1 export, 1
+- [x] `npm run build && npm test` runs in <10s on cold cache.
+- [x] Every new primitive ships with: 1 tsx file, 1 CSS block, 1 export, 1
       render test, 1 a11y test. (Lazy ceiling: 5 files per primitive.)
-- [ ] README has: Tokens, Dark mode, FOUC, RTL, A11y, Overriding tokens,
+- [x] README has: Tokens, Dark mode, FOUC, RTL, A11y, Overriding tokens,
       What's not here sections. No "TODO" left.
-- [ ] The package's bundle size (gzipped): `index.js` < 4 KB, `theme.js` <
+- [x] The package's bundle size (gzipped): `index.js` < 4 KB, `theme.js` <
       1 KB, `styles.css` < 6 KB.
-- [ ] No `any` in `src/**` except where required by an external API we don't
+- [x] No `any` in `src/**` except where required by an external API we don't
       own (the polymorphic `as` default). (W1.7.)
-- [ ] `react.d.ts` is one line. (W1.1.)
+- [x] `react.d.ts` is one line. (W1.1.)
 
 ---
 
