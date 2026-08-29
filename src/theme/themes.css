@@ -11,7 +11,9 @@
   --ps-color-success: #22c55e;
   --ps-color-success-fg: #052e16;
   --ps-color-danger: #ef4444;
-  --ps-color-danger-fg: #450a0a;
+  /* #3a0606 keeps 4.62:1 against --ps-color-danger (#ef4444) — WCAG AA.
+     The previous #450a0a only reached 4.29:1. */
+  --ps-color-danger-fg: #3a0606;
   --ps-color-warning: #f59e0b;
   --ps-color-warning-fg: #451a03;
   --ps-color-info: #60a5fa;
