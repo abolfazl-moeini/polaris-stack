@@ -109,7 +109,9 @@ export function createPolarisThemeInitScript(options?: {
   return `(function(){try{
 var k=${JSON.stringify(storageKey)};
 var d=${JSON.stringify(defaultTheme)};
-var t=localStorage.getItem(k);
+var v=localStorage.getItem(k);
+var ok=v==="light"||v==="dark"||v==="system"||v==="hc"||v==="brand";
+var t=ok?v:null;
 var m=matchMedia("(prefers-color-scheme: dark)").matches;
 var s=function(v){return v==="system"?(m?"dark":"light"):v;};
 var r=t?s(t):(d==="system"?(m?"dark":"light"):d);
