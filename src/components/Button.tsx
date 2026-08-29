@@ -49,12 +49,16 @@ export function Button({
       className,
     ),
     "aria-busy": loading || undefined,
-    disabled: disabled || loading || undefined,
     ...rest,
   };
 
   if (isButton) {
     props.type = type;
+    props.disabled = disabled || loading || undefined;
+  } else if (disabled || loading) {
+    // `disabled` is only valid on form controls — anchors and other elements
+    // get the accessible equivalent instead.
+    props["aria-disabled"] = true;
   }
 
   return polymorphicElement(
