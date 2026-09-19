@@ -1,0 +1,61 @@
+/*! @wpdev/polaris-stack: archetypes/glass.css | Frosted Glassmorphic Visual Physics */
+
+@layer ps.archetype {
+  [data-archetype="glass"] {
+    /* Rebind installed shadow tokens with soft ambient blur and inset top-sheen highlight */
+    --ps-shadow-1: 0 4px 16px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    --ps-shadow-2: 0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    --ps-shadow-3: 0 16px 48px rgba(0, 0, 0, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    --ps-shadow-4: 0 24px 64px rgba(0, 0, 0, 0.20), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+
+    /* Rebind installed radius tokens */
+    --ps-radius-1: 8px;
+    --ps-radius-2: 16px;
+    --ps-radius-full: 9999px;
+
+    /* Additive archetype-only tokens (Complete Reset Set) */
+    --ps-border-width: 1px;
+    --ps-border-style: solid;
+    --ps-surface-opacity: 70%;
+    --ps-surface-tint-step: 0%;
+    --ps-backdrop-blur: 16px;
+    --ps-backdrop-saturate: 180%;
+    --ps-motion-duration: 240ms;
+    --ps-motion-easing: cubic-bezier(0.16, 1, 0.3, 1);
+    --ps-active-transform: scale(0.98);
+    --ps-corner-shape: round;
+
+    /* Aliases sync */
+    --ps-shadow-level-1: var(--ps-shadow-1);
+    --ps-shadow-level-2: var(--ps-shadow-2);
+    --ps-shadow-level-3: var(--ps-shadow-3);
+    --ps-shadow-level-4: var(--ps-shadow-4);
+    --ps-radius-sm: 8px;
+    --ps-radius-md: 16px;
+    --ps-radius-lg: 24px;
+  }
+
+  /* Browser & Battery-Saver Fallback Guards (SPEC §7 & Plan §2.1) */
+  @supports not (backdrop-filter: blur(1px)) {
+    [data-archetype="glass"] {
+      --ps-surface-opacity: 92%;
+      --ps-backdrop-blur: 0px;
+    }
+  }
+
+  @media (prefers-reduced-transparency: reduce) {
+    [data-archetype="glass"] {
+      --ps-surface-opacity: 92%;
+      --ps-backdrop-blur: 0px;
+    }
+  }
+
+  /* Apply Frosted Surface Fill and Backdrop Filter to Glass Cards */
+  [data-archetype="glass"] .ps-card {
+    background-color: var(--ps-surface-base);
+    background-color: color-mix(in srgb, var(--ps-surface-base) var(--ps-surface-opacity), transparent);
+    backdrop-filter: blur(var(--ps-backdrop-blur)) saturate(var(--ps-backdrop-saturate));
+    -webkit-backdrop-filter: blur(var(--ps-backdrop-blur)) saturate(var(--ps-backdrop-saturate));
+    border-color: rgba(255, 255, 255, 0.25);
+  }
+}

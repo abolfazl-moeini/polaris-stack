@@ -2,7 +2,7 @@ import * as esbuild from "esbuild";
 import { readFileSync, rmSync, mkdirSync, existsSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { buildStylesCss } from "./scripts/build-css.mjs";
+import { buildStylesCss, buildChameleonStyles } from "./scripts/build-css.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const isDev = process.argv.includes("--dev");
@@ -24,6 +24,8 @@ await esbuild.build({
     "src/components/index.ts",
     "src/theme/index.ts",
     "src/theme/script.ts",
+    "src/islands/tabs.ts",
+    "src/islands/dialog-enhancer.ts",
   ],
   outdir: outDir,
   format: "esm",
@@ -39,6 +41,11 @@ await esbuild.build({
 });
 
 await buildStylesCss(outDir, {
+  minify: !isDev,
+  version: pkg.version,
+});
+
+await buildChameleonStyles(outDir, {
   minify: !isDev,
   version: pkg.version,
 });

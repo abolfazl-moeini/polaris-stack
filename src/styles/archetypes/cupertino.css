@@ -1,0 +1,53 @@
+/*! @wpdev/polaris-stack: archetypes/cupertino.css | Cupertino Soft & Organic Squircle Visual Physics */
+
+@layer ps.archetype {
+  [data-archetype="cupertino"] {
+    /* Rebind installed shadow tokens to organic diffused shadows */
+    --ps-shadow-1: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.04);
+    --ps-shadow-2: 0 8px 24px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.04);
+    --ps-shadow-3: 0 20px 40px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.04);
+    --ps-shadow-4: 0 32px 64px rgba(0, 0, 0, 0.10), 0 8px 20px rgba(0, 0, 0, 0.04);
+
+    /* Rebind installed radius tokens to generous soft radii */
+    --ps-radius-1: 8px;
+    --ps-radius-2: 14px;
+    --ps-radius-full: 9999px;
+
+    /* Additive archetype-only tokens (Complete Reset Set) */
+    --ps-border-width: 0.5px;
+    --ps-border-style: solid;
+    --ps-surface-opacity: 92%;
+    --ps-surface-tint-step: 0%;
+    --ps-backdrop-blur: 20px;
+    --ps-backdrop-saturate: 140%;
+    --ps-motion-duration: 250ms;
+    --ps-motion-easing: cubic-bezier(0.32, 0.72, 0, 1);
+    --ps-active-transform: scale(0.97);
+    --ps-corner-shape: squircle;
+
+    /* Aliases sync */
+    --ps-shadow-level-1: var(--ps-shadow-1);
+    --ps-shadow-level-2: var(--ps-shadow-2);
+    --ps-shadow-level-3: var(--ps-shadow-3);
+    --ps-shadow-level-4: var(--ps-shadow-4);
+    --ps-radius-sm: 8px;
+    --ps-radius-md: 14px;
+    --ps-radius-lg: 22px;
+  }
+
+  /* Squircle continuous curvature where supported; degrades to round implicitly */
+  @supports (corner-shape: squircle) {
+    [data-archetype="cupertino"] .ps-card,
+    [data-archetype="cupertino"] .ps-btn {
+      corner-shape: var(--ps-corner-shape);
+    }
+  }
+
+  /* Micro-Spring Transition Dynamics */
+  [data-archetype="cupertino"] .ps-btn {
+    transition:
+      transform var(--ps-motion-duration) var(--ps-motion-easing),
+      background-color var(--ps-motion-duration) ease,
+      box-shadow var(--ps-motion-duration) ease;
+  }
+}

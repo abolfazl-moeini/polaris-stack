@@ -1,0 +1,37 @@
+/*! @wpdev/polaris-stack: archetypes/flat.css | Minimalist Flat Visual Physics */
+
+@layer ps.archetype {
+  [data-archetype="flat"] {
+    /* Rebind installed shadow tokens to zero */
+    --ps-shadow-1: none;
+    --ps-shadow-2: none;
+    --ps-shadow-3: none;
+    --ps-shadow-4: none;
+
+    /* Rebind installed radius tokens to crisp 2px / 4px */
+    --ps-radius-1: 2px;
+    --ps-radius-2: 4px;
+    --ps-radius-full: 9999px;
+
+    /* Additive archetype-only tokens (Complete Reset Set) */
+    --ps-border-width: 1px;
+    --ps-border-style: solid;
+    --ps-surface-opacity: 100%;
+    --ps-surface-tint-step: 0%;
+    --ps-backdrop-blur: 0px;
+    --ps-backdrop-saturate: 100%;
+    --ps-motion-duration: 100ms;
+    --ps-motion-easing: ease;
+    --ps-active-transform: none;
+    --ps-corner-shape: round;
+
+    /* Aliases sync */
+    --ps-shadow-level-1: none;
+    --ps-shadow-level-2: none;
+    --ps-shadow-level-3: none;
+    --ps-shadow-level-4: none;
+    --ps-radius-sm: 2px;
+    --ps-radius-md: 4px;
+    --ps-radius-lg: 6px;
+  }
+}

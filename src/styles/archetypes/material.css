@@ -1,0 +1,37 @@
+/*! @wpdev/polaris-stack: archetypes/material.css | Elevated Material 3 Visual Physics */
+
+@layer ps.archetype {
+  [data-archetype="material"] {
+    /* Rebind installed shadow tokens to dual-source ambient + key lights */
+    --ps-shadow-1: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.18);
+    --ps-shadow-2: 0 3px 6px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.12);
+    --ps-shadow-3: 0 10px 20px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.10);
+    --ps-shadow-4: 0 14px 28px rgba(0, 0, 0, 0.20), 0 5px 10px rgba(0, 0, 0, 0.12);
+
+    /* Rebind installed radius tokens */
+    --ps-radius-1: 6px;
+    --ps-radius-2: 12px;
+    --ps-radius-full: 9999px;
+
+    /* Additive archetype-only tokens (Complete Reset Set) */
+    --ps-border-width: 0px;
+    --ps-border-style: solid;
+    --ps-surface-opacity: 100%;
+    --ps-surface-tint-step: 4%;
+    --ps-backdrop-blur: 0px;
+    --ps-backdrop-saturate: 100%;
+    --ps-motion-duration: 200ms;
+    --ps-motion-easing: cubic-bezier(0.2, 0, 0, 1);
+    --ps-active-transform: scale(0.99);
+    --ps-corner-shape: round;
+
+    /* Aliases sync */
+    --ps-shadow-level-1: var(--ps-shadow-1);
+    --ps-shadow-level-2: var(--ps-shadow-2);
+    --ps-shadow-level-3: var(--ps-shadow-3);
+    --ps-shadow-level-4: var(--ps-shadow-4);
+    --ps-radius-sm: 6px;
+    --ps-radius-md: 12px;
+    --ps-radius-lg: 20px;
+  }
+}

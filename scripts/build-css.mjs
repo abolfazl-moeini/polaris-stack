@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync, rmSync } from "node:fs";
+import { readFileSync, writeFileSync, rmSync, existsSync, mkdirSync } from "node:fs";
 import { execSync } from "node:child_process";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -120,4 +120,37 @@ export async function buildStylesCss(outDir, options = {}) {
   }
 
   return result.css;
+}
+
+export async function buildChameleonStyles(outDir, options = {}) {
+  const { minify = true, version = "1.0.0" } = options;
+  const { sha, builtAt } = resolveBuildMeta(options);
+  const header = `/*! @wpdev/polaris-stack v${version}+${sha} @ ${builtAt} | MIT | chameleon engine */\n`;
+
+  // 1. Build polaris-core.css
+  const coreSrc = path.join(root, "src/styles/polaris-core.css");
+  if (existsSync(coreSrc)) {
+    const coreCss = readFileSync(coreSrc, "utf8");
+    const processedCore = minify
+      ? (await postcss([cssnano({ preset: ["default", { discardComments: { removeAll: false } }] })]).process(coreCss, { from: coreSrc })).css
+      : coreCss;
+    writeFileSync(path.join(outDir, "polaris-core.css"), header + processedCore, "utf8");
+  }
+
+  // 2. Build archetypes/*.css
+  const archetypesSrcDir = path.join(root, "src/styles/archetypes");
+  const archetypesOutDir = path.join(outDir, "archetypes");
+  mkdirSync(archetypesOutDir, { recursive: true });
+
+  const archetypes = ["flat.css", "material.css", "glass.css", "brutalist.css", "cupertino.css"];
+  for (const file of archetypes) {
+    const filePath = path.join(archetypesSrcDir, file);
+    if (existsSync(filePath)) {
+      const srcCss = readFileSync(filePath, "utf8");
+      const processed = minify
+        ? (await postcss([cssnano({ preset: ["default", { discardComments: { removeAll: false } }] })]).process(srcCss, { from: filePath })).css
+        : srcCss;
+      writeFileSync(path.join(archetypesOutDir, file), header + processed, "utf8");
+    }
+  }
 }

@@ -1,0 +1,50 @@
+/*! @wpdev/polaris-stack: archetypes/brutalist.css | High-Contrast Neo-Brutalist Visual Physics */
+
+@layer ps.archetype {
+  [data-archetype="brutalist"] {
+    /* Rebind installed shadow tokens to hard-offset geometric shadows */
+    --ps-shadow-1: 2px 2px 0px #000000;
+    --ps-shadow-2: 4px 4px 0px #000000;
+    --ps-shadow-3: 6px 6px 0px #000000;
+    --ps-shadow-4: 8px 8px 0px #000000;
+
+    /* Rebind installed radius tokens to sharp 0px */
+    --ps-radius-1: 0px;
+    --ps-radius-2: 0px;
+    --ps-radius-full: 0px;
+
+    /* Additive archetype-only tokens (Complete Reset Set) */
+    --ps-border-width: 2px;
+    --ps-border-style: solid;
+    --ps-surface-opacity: 100%;
+    --ps-surface-tint-step: 0%;
+    --ps-backdrop-blur: 0px;
+    --ps-backdrop-saturate: 100%;
+    --ps-motion-duration: 80ms;
+    --ps-motion-easing: steps(2, start);
+    --ps-active-transform: translate(2px, 2px);
+    --ps-corner-shape: round;
+
+    /* Aliases sync */
+    --ps-shadow-level-1: 2px 2px 0px #000000;
+    --ps-shadow-level-2: 4px 4px 0px #000000;
+    --ps-shadow-level-3: 6px 6px 0px #000000;
+    --ps-shadow-level-4: 8px 8px 0px #000000;
+    --ps-radius-sm: 0px;
+    --ps-radius-md: 0px;
+    --ps-radius-lg: 0px;
+  }
+
+  /* Physical Button Press-Follow Depression */
+  [data-archetype="brutalist"] .ps-btn:active {
+    transform: var(--ps-active-transform);
+    box-shadow: none !important;
+  }
+
+  /* High-Contrast Black Borders on Components */
+  [data-archetype="brutalist"] .ps-card,
+  [data-archetype="brutalist"] .ps-btn,
+  [data-archetype="brutalist"] .ps-badge {
+    border-color: #000000 !important;
+  }
+}
