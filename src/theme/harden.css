@@ -1,0 +1,50 @@
+/* ==========================================================================
+   LAYER 1: HARDENING RESET (!important Inverted Cascade Defense)
+   Under CSS Cascade Level 5, layered !important in the first declared layer
+   defeats unlayered !important resets from hostile host themes.
+   ========================================================================== */
+@layer ps.harden {
+  .ps-root,
+  .ps-root *,
+  .ps-root *::before,
+  .ps-root *::after {
+    box-sizing: border-box !important;
+  }
+
+  .ps-root [hidden] {
+    display: none !important;
+  }
+
+  .ps-root img,
+  .ps-root svg,
+  .ps-root video {
+    max-inline-size: 100% !important;
+    height: auto;
+  }
+
+  /* Structural Resets (CP-5 / R14-R16: Appearance, Box-Sizing, Margin) */
+  /* Visual properties (color, background-color, border-radius, font-family) are never hardened */
+  .ps-root .ps-button {
+    appearance: none !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    text-decoration: none !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
+    background-image: none !important;
+  }
+
+  .ps-root input,
+  .ps-root textarea,
+  .ps-root select {
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    letter-spacing: normal !important;
+    background-image: none !important;
+  }
+
+  .ps-root *:focus-visible {
+    outline: 2px solid currentColor !important;
+    outline-offset: 2px !important;
+  }
+}

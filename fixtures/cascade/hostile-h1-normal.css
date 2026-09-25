@@ -1,0 +1,13 @@
+/* H1: Normal unlayered element/class styles from WordPress themes */
+button {
+  background: #b91c1c;
+  margin: 24px;
+  font-size: 28px;
+}
+.entry-content a {
+  color: #00ff00;
+  text-decoration: underline;
+}
+.entry-content button {
+  padding: 0;
+}

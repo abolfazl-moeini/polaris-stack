@@ -33,10 +33,20 @@
     "./theme-script": {
       "types": "./dist/theme/script.d.ts",
       "import": "./dist/theme/script.js"
+    },
+    "./runtime": {
+      "types": "./dist/runtime/index.d.ts",
+      "import": "./dist/runtime/index.js"
     }
   },
   "scripts": {
     "build": "node build.config.mjs && tsc --emitDeclarationOnly --outDir dist",
+    "build:tokens": "node scripts/build-tokens.mjs",
+    "test:tokens": "node --test scripts/build-tokens.test.mjs",
+    "test:cascade": "node tools/cascade/run.mjs",
+    "test:browser": "node tools/verify-browser.mjs --smoke --a11y --root-check",
+    "test:matrix": "node tools/verify-browser.mjs --pairwise",
+    "test:bakeoff": "node tools/runtime-bake-off.mjs",
     "test": "echo \"Run tests from monorepo root: npm test -- --testPathPattern=polaris\"",
     "prepublishOnly": "npm run build"
   },
@@ -52,6 +62,7 @@
     "@preact/compat": "^18.3.2",
     "cssnano": "^7.0.6",
     "esbuild": ">=0.20",
+    "playwright-core": "^1.63.0",
     "postcss": "^8.4.49",
     "react": "npm:@preact/compat@^18.3.2",
     "typescript": ">=5.0"

@@ -19,14 +19,14 @@ export function enhanceDialogs(root: ParentNode = document): void {
       if (!dialog.showModal) {
         dialog.showModal = function () {
           dialog.setAttribute("open", "");
-          dialog.classList.add("ps-modal--fallback-open");
+          dialog.classList.add("ps-modal-fallback-open");
           document.body.style.overflow = "hidden";
         };
       }
       if (!dialog.close) {
         dialog.close = function () {
           dialog.removeAttribute("open");
-          dialog.classList.remove("ps-modal--fallback-open");
+          dialog.classList.remove("ps-modal-fallback-open");
           document.body.style.overflow = "";
         };
       }
@@ -46,8 +46,8 @@ export function enhanceDialogs(root: ParentNode = document): void {
       }
     });
 
-    // Wire close buttons
-    const closeBtns = dialog.querySelectorAll<HTMLElement>(".ps-btn-close, [data-ps-close]");
+    // Wire close buttons (attribute-bound behavior, decoupled from styling classes)
+    const closeBtns = dialog.querySelectorAll<HTMLElement>("[data-ps-close]");
     closeBtns.forEach((btn) => {
       btn.addEventListener("click", () => dialog.close());
     });

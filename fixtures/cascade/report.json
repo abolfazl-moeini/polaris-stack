@@ -1,0 +1,341 @@
+{
+  "summary": {
+    "decision": "Option B (Scoped Unlayered Components) wins H1 and H6, ties on H3, and preserves token flow",
+    "h1_normal": {
+      "A": "Theme",
+      "B": "Polaris"
+    },
+    "h2_high_spec": {
+      "A": "Theme (Documented Limit)",
+      "B": "Theme (Documented Limit)"
+    },
+    "h3_struct_important": {
+      "A": "Harden Wins",
+      "B": "Harden Wins"
+    },
+    "h4_visual_important": {
+      "A": "Theme (Documented Limit)",
+      "B": "Theme (Documented Limit)"
+    },
+    "h5_inline_important": {
+      "A": "Inline Wins",
+      "B": "Inline Wins"
+    },
+    "h6_form_reset": {
+      "A": "Theme",
+      "B": "Theme"
+    },
+    "t4_4_token_flow": {
+      "A": false,
+      "B": false
+    }
+  },
+  "raw_measurements": {
+    "H1_normal": {
+      "A": {
+        "button": {
+          "backgroundColor": "rgb(185, 28, 28)",
+          "margin": "0px",
+          "fontSize": "28px",
+          "boxSizing": "border-box",
+          "appearance": "none",
+          "textDecorationLine": "none"
+        },
+        "input": {
+          "borderWidth": "2px",
+          "borderStyle": "inset",
+          "borderColor": "rgb(118, 118, 118)",
+          "width": "153px"
+        }
+      },
+      "B": {
+        "button": {
+          "backgroundColor": "rgb(14, 95, 99)",
+          "margin": "0px",
+          "fontSize": "16px",
+          "boxSizing": "border-box",
+          "appearance": "none",
+          "textDecorationLine": "none"
+        },
+        "input": {
+          "borderWidth": "2px",
+          "borderStyle": "inset",
+          "borderColor": "rgb(118, 118, 118)",
+          "width": "153px"
+        }
+      }
+    },
+    "H2_high_spec": {
+      "A": {
+        "button": {
+          "backgroundColor": "rgb(185, 28, 28)",
+          "margin": "0px",
+          "fontSize": "16px",
+          "boxSizing": "border-box",
+          "appearance": "none",
+          "textDecorationLine": "none"
+        },
+        "input": {
+          "borderWidth": "2px",
+          "borderStyle": "inset",
+          "borderColor": "rgb(118, 118, 118)",
+          "width": "153px"
+        }
+      },
+      "B": {
+        "button": {
+          "backgroundColor": "rgb(185, 28, 28)",
+          "margin": "0px",
+          "fontSize": "16px",
+          "boxSizing": "border-box",
+          "appearance": "none",
+          "textDecorationLine": "none"
+        },
+        "input": {
+          "borderWidth": "2px",
+          "borderStyle": "inset",
+          "borderColor": "rgb(118, 118, 118)",
+          "width": "153px"
+        }
+      }
+    },
+    "H3_struct_important": {
+      "A": {
+        "button": {
+          "backgroundColor": "rgb(14, 95, 99)",
+          "margin": "0px",
+          "fontSize": "16px",
+          "boxSizing": "border-box",
+          "appearance": "none",
+          "textDecorationLine": "none"
+        },
+        "input": {
+          "borderWidth": "2px",
+          "borderStyle": "inset",
+          "borderColor": "rgb(118, 118, 118)",
+          "width": "153px"
+        }
+      },
+      "B": {
+        "button": {
+          "backgroundColor": "rgb(14, 95, 99)",
+          "margin": "0px",
+          "fontSize": "16px",
+          "boxSizing": "border-box",
+          "appearance": "none",
+          "textDecorationLine": "none"
+        },
+        "input": {
+          "borderWidth": "2px",
+          "borderStyle": "inset",
+          "borderColor": "rgb(118, 118, 118)",
+          "width": "153px"
+        }
+      }
+    },
+    "H4_visual_important": {
+      "A": {
+        "button": {
+          "backgroundColor": "rgb(185, 28, 28)",
+          "margin": "0px",
+          "fontSize": "16px",
+          "boxSizing": "border-box",
+          "appearance": "none",
+          "textDecorationLine": "none"
+        },
+        "input": {
+          "borderWidth": "2px",
+          "borderStyle": "inset",
+          "borderColor": "rgb(118, 118, 118)",
+          "width": "153px"
+        }
+      },
+      "B": {
+        "button": {
+          "backgroundColor": "rgb(185, 28, 28)",
+          "margin": "0px",
+          "fontSize": "16px",
+          "boxSizing": "border-box",
+          "appearance": "none",
+          "textDecorationLine": "none"
+        },
+        "input": {
+          "borderWidth": "2px",
+          "borderStyle": "inset",
+          "borderColor": "rgb(118, 118, 118)",
+          "width": "153px"
+        }
+      }
+    },
+    "H5_inline_important": {
+      "A": {
+        "button": {
+          "backgroundColor": "rgb(14, 95, 99)",
+          "margin": "0px",
+          "fontSize": "16px",
+          "boxSizing": "border-box",
+          "appearance": "none",
+          "textDecorationLine": "none"
+        },
+        "input": {
+          "borderWidth": "2px",
+          "borderStyle": "inset",
+          "borderColor": "rgb(118, 118, 118)",
+          "width": "153px"
+        }
+      },
+      "B": {
+        "button": {
+          "backgroundColor": "rgb(14, 95, 99)",
+          "margin": "0px",
+          "fontSize": "16px",
+          "boxSizing": "border-box",
+          "appearance": "none",
+          "textDecorationLine": "none"
+        },
+        "input": {
+          "borderWidth": "2px",
+          "borderStyle": "inset",
+          "borderColor": "rgb(118, 118, 118)",
+          "width": "153px"
+        }
+      }
+    },
+    "H6_form_reset": {
+      "A": {
+        "button": {
+          "backgroundColor": "rgb(14, 95, 99)",
+          "margin": "0px",
+          "fontSize": "16px",
+          "boxSizing": "border-box",
+          "appearance": "none",
+          "textDecorationLine": "none"
+        },
+        "input": {
+          "borderWidth": "2px",
+          "borderStyle": "solid",
+          "borderColor": "rgb(255, 0, 0)",
+          "width": "153px"
+        }
+      },
+      "B": {
+        "button": {
+          "backgroundColor": "rgb(14, 95, 99)",
+          "margin": "0px",
+          "fontSize": "16px",
+          "boxSizing": "border-box",
+          "appearance": "none",
+          "textDecorationLine": "none"
+        },
+        "input": {
+          "borderWidth": "2px",
+          "borderStyle": "solid",
+          "borderColor": "rgb(255, 0, 0)",
+          "width": "153px"
+        }
+      }
+    },
+    "T4_4_token_flow": {
+      "A": {
+        "button": {
+          "backgroundColor": "rgb(14, 95, 99)",
+          "margin": "0px",
+          "fontSize": "16px",
+          "boxSizing": "border-box",
+          "appearance": "none",
+          "textDecorationLine": "none"
+        },
+        "input": {
+          "borderWidth": "2px",
+          "borderStyle": "inset",
+          "borderColor": "rgb(118, 118, 118)",
+          "width": "153px"
+        }
+      },
+      "B": {
+        "button": {
+          "backgroundColor": "rgb(14, 95, 99)",
+          "margin": "0px",
+          "fontSize": "16px",
+          "boxSizing": "border-box",
+          "appearance": "none",
+          "textDecorationLine": "none"
+        },
+        "input": {
+          "borderWidth": "2px",
+          "borderStyle": "inset",
+          "borderColor": "rgb(118, 118, 118)",
+          "width": "153px"
+        }
+      }
+    },
+    "T4_5_peaceful_host_font": {
+      "A": {
+        "button": {
+          "backgroundColor": "rgb(14, 95, 99)",
+          "margin": "0px",
+          "fontSize": "16px",
+          "boxSizing": "border-box",
+          "appearance": "none",
+          "textDecorationLine": "none"
+        },
+        "input": {
+          "borderWidth": "2px",
+          "borderStyle": "inset",
+          "borderColor": "rgb(118, 118, 118)",
+          "width": "153px"
+        }
+      },
+      "B": {
+        "button": {
+          "backgroundColor": "rgb(14, 95, 99)",
+          "margin": "0px",
+          "fontSize": "16px",
+          "boxSizing": "border-box",
+          "appearance": "none",
+          "textDecorationLine": "none"
+        },
+        "input": {
+          "borderWidth": "2px",
+          "borderStyle": "inset",
+          "borderColor": "rgb(118, 118, 118)",
+          "width": "153px"
+        }
+      }
+    },
+    "T4_6_tenant_rebind": {
+      "A": {
+        "button": {
+          "backgroundColor": "rgb(14, 95, 99)",
+          "margin": "0px",
+          "fontSize": "16px",
+          "boxSizing": "border-box",
+          "appearance": "none",
+          "textDecorationLine": "none"
+        },
+        "input": {
+          "borderWidth": "2px",
+          "borderStyle": "inset",
+          "borderColor": "rgb(118, 118, 118)",
+          "width": "153px"
+        }
+      },
+      "B": {
+        "button": {
+          "backgroundColor": "rgb(14, 95, 99)",
+          "margin": "0px",
+          "fontSize": "16px",
+          "boxSizing": "border-box",
+          "appearance": "none",
+          "textDecorationLine": "none"
+        },
+        "input": {
+          "borderWidth": "2px",
+          "borderStyle": "inset",
+          "borderColor": "rgb(118, 118, 118)",
+          "width": "153px"
+        }
+      }
+    }
+  }
+}

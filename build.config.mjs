@@ -3,10 +3,14 @@ import { readFileSync, rmSync, mkdirSync, existsSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { buildStylesCss, buildChameleonStyles } from "./scripts/build-css.mjs";
+import { buildTokens } from "./scripts/build-tokens.mjs";
+import { wpExternalsPlugin } from "./tools/esbuild-wp-externals.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const isDev = process.argv.includes("--dev");
 const outDir = path.join(__dirname, "dist");
+
+buildTokens();
 
 const pkg = JSON.parse(
   readFileSync(path.join(__dirname, "package.json"), "utf8"),
@@ -24,6 +28,7 @@ await esbuild.build({
     "src/components/index.ts",
     "src/theme/index.ts",
     "src/theme/script.ts",
+    "src/runtime/index.ts",
     "src/islands/tabs.ts",
     "src/islands/dialog-enhancer.ts",
   ],
@@ -38,6 +43,7 @@ await esbuild.build({
   external: ["react", "react-dom"],
   loader: { ".css": "css" },
   outExtension: { ".js": ".js" },
+  plugins: [wpExternalsPlugin()],
 });
 
 await buildStylesCss(outDir, {

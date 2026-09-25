@@ -38,13 +38,13 @@
   /* Squircle continuous curvature where supported; degrades to round implicitly */
   @supports (corner-shape: squircle) {
     [data-archetype="cupertino"] .ps-card,
-    [data-archetype="cupertino"] .ps-btn {
+    [data-archetype="cupertino"] .ps-button {
       corner-shape: var(--ps-corner-shape);
     }
   }
 
   /* Micro-Spring Transition Dynamics */
-  [data-archetype="cupertino"] .ps-btn {
+  [data-archetype="cupertino"] .ps-button {
     transition:
       transform var(--ps-motion-duration) var(--ps-motion-easing),
       background-color var(--ps-motion-duration) ease,

@@ -1,0 +1,2 @@
+/* 6-Layer Priority Order Declaration (SPEC §2.1 & Architecture Rule) */
+@layer ps.harden, ps.base, ps.archetype, ps.host, ps.tenant, ps.skin;

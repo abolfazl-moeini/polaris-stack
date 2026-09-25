@@ -1,6 +1,18 @@
 /* Scoped base — avoids clobbering WordPress admin html/body styles. */
+.ps-root,
 .ps-scope {
   color: var(--ps-color-fg);
   font-family: var(--ps-font-body);
-  background-color: var(--ps-color-bg);
+  background-color: var(--ps-surface-base, var(--ps-color-bg));
+  line-height: 1.5;
+  text-align: start;
+}
+
+/* Container Query Autonomy */
+.ps-dashboard-container,
+.ps-container {
+  container-type: inline-size;
+  container-name: ps-container;
+  box-sizing: border-box;
+  inline-size: 100%;
 }

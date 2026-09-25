@@ -1,0 +1,31 @@
+/* Hostile Classic WordPress Theme Fixture
+   Aggressive unlayered global resets designed to challenge cascade defenses */
+
+* {
+  box-sizing: content-box !important;
+}
+
+body {
+  font-family: "Comic Sans MS", cursive !important;
+  color: #8b0000;
+  line-height: 2 !important;
+}
+
+button, input[type="button"], input[type="submit"] {
+  background: #ff00ff !important;
+  color: #00ffff !important;
+  border: 4px dotted #000000 !important;
+  border-radius: 30px !important;
+  padding: 24px !important;
+  margin: 15px !important;
+  font-size: 20px !important;
+}
+
+img, svg, video {
+  max-width: none !important;
+  width: auto !important;
+}
+
+[hidden] {
+  display: block !important;
+}

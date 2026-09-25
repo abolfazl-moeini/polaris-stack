@@ -1,0 +1,164 @@
+{
+  "version": "1.0.0",
+  "components": {
+    "button": {
+      "rootClass": "ps-button",
+      "rootTag": ["button", "a"],
+      "variants": {
+        "variant": ["solid", "soft", "ghost"],
+        "size": ["sm", "md", "lg"],
+        "width": ["block"]
+      },
+      "parts": [
+        "ps-button-icon",
+        "ps-button-icon-only"
+      ],
+      "states": [
+        "ps-button-loading"
+      ],
+      "aria": {
+        "busy": "aria-busy",
+        "disabled": "aria-disabled"
+      },
+      "requiredAttributes": {
+        "button": ["type"]
+      },
+      "tokens": [
+        "--ps-color-primary",
+        "--ps-color-primary-fg",
+        "--ps-radius-base"
+      ]
+    },
+    "card": {
+      "rootClass": "ps-card",
+      "rootTag": ["div", "section", "article"],
+      "variants": {
+        "elevation": ["1", "2", "3", "4"],
+        "interactive": ["interactive"]
+      },
+      "tokens": [
+        "--ps-surface-base",
+        "--ps-color-border",
+        "--ps-shadow-1"
+      ]
+    },
+    "badge": {
+      "rootClass": "ps-badge",
+      "rootTag": ["span", "div"],
+      "variants": {
+        "tone": ["info", "success", "warning", "danger", "neutral"]
+      },
+      "tokens": [
+        "--ps-color-muted",
+        "--ps-color-fg"
+      ]
+    },
+    "alert": {
+      "rootClass": "ps-alert",
+      "rootTag": ["div", "aside"],
+      "variants": {
+        "tone": ["info", "success", "warning", "danger"]
+      },
+      "tokens": [
+        "--ps-color-soft",
+        "--ps-color-border"
+      ]
+    },
+    "heading": {
+      "rootClass": "ps-heading",
+      "rootTag": ["h1", "h2", "h3", "h4", "h5", "h6"],
+      "variants": {
+        "level": ["1", "2", "3", "4", "5", "6"]
+      },
+      "tokens": [
+        "--ps-font-heading",
+        "--ps-color-fg"
+      ]
+    },
+    "text": {
+      "rootClass": "ps-text",
+      "rootTag": ["p", "span", "div"],
+      "variants": {
+        "size": ["xs", "sm", "base", "lg", "xl"],
+        "weight": ["normal", "medium", "semibold", "bold"],
+        "tone": ["muted", "subtle", "strong"],
+        "overflow": ["truncate"]
+      },
+      "tokens": [
+        "--ps-font-body",
+        "--ps-color-fg"
+      ]
+    },
+    "spinner": {
+      "rootClass": "ps-spinner",
+      "rootTag": ["span", "div"],
+      "tokens": [
+        "--ps-color-primary",
+        "--ps-color-border"
+      ]
+    },
+    "kbd": {
+      "rootClass": "ps-kbd",
+      "rootTag": ["kbd"],
+      "tokens": [
+        "--ps-color-muted",
+        "--ps-color-border"
+      ]
+    },
+    "divider": {
+      "rootClass": "ps-divider",
+      "rootTag": ["hr", "div"],
+      "tokens": [
+        "--ps-color-border"
+      ]
+    }
+  },
+  "layouts": {
+    "box": { "rootClass": "ps-box" },
+    "stack": { "rootClass": "ps-stack" },
+    "grid": { "rootClass": "ps-grid" },
+    "cluster": { "rootClass": "ps-cluster" },
+    "sidebar": { "rootClass": "ps-sidebar" },
+    "switcher": { "rootClass": "ps-switcher" },
+    "center": { "rootClass": "ps-center" },
+    "container": { "rootClass": "ps-container" },
+    "cover": { "rootClass": "ps-cover" },
+    "frame": { "rootClass": "ps-frame" },
+    "reel": { "rootClass": "ps-reel" },
+    "imposter": {
+      "rootClass": "ps-imposter",
+      "modifiers": ["ps-imposter-fixed"]
+    }
+  },
+  "islands": {
+    "modal": {
+      "rootClass": "ps-modal",
+      "parts": [
+        "ps-modal-dialog",
+        "ps-modal-header",
+        "ps-modal-body",
+        "ps-modal-footer"
+      ],
+      "modifiers": [
+        "ps-modal-fallback-open"
+      ]
+    },
+    "popover": {
+      "rootClass": "ps-popover"
+    },
+    "details": {
+      "rootClass": "ps-details",
+      "parts": [
+        "ps-details-content",
+        "ps-summary",
+        "ps-summary-title"
+      ]
+    }
+  },
+  "utilities": {},
+  "internal": [
+    "ps-root",
+    "ps-scope",
+    "ps-dashboard-container"
+  ]
+}

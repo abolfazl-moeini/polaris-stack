@@ -1,4 +1,7 @@
 node_modules/
 dist/
+dist-bakeoff/
+dist-cascade/
+artifacts/
 .DS_Store
 *.log

@@ -1,0 +1,8 @@
+/* H3: Theme unlayered !important on structural properties */
+button {
+  margin: 24px !important;
+  appearance: auto !important;
+}
+* {
+  box-sizing: content-box !important;
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bake-off: Preact Island Counter</title>
+  <style>
+    /* Inlined Polaris Core & Material tokens for test isolation */
+    .ps-root {
+      --ps-color-primary: #1976d2;
+      --ps-color-primary-hover: #1565c0;
+      --ps-color-surface: #ffffff;
+      --ps-color-text: #212121;
+      --ps-radius-md: 4px;
+      --ps-shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+      font-family: system-ui, -apple-system, sans-serif;
+      padding: 24px;
+    }
+    .ps-card {
+      background: var(--ps-color-surface);
+      color: var(--ps-color-text);
+      border-radius: var(--ps-radius-md);
+      box-shadow: var(--ps-shadow-sm);
+      padding: 16px;
+      max-width: 400px;
+    }
+    .ps-button {
+      padding: 8px 16px;
+      border-radius: var(--ps-radius-md);
+      border: none;
+      cursor: pointer;
+      font-weight: 500;
+    }
+    .ps-button[data-variant="primary"] {
+      background: var(--ps-color-primary);
+      color: #fff;
+    }
+    .ps-badge {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: var(--ps-radius-md);
+      background: #e3f2fd;
+      color: #0d47a1;
+      font-weight: bold;
+    }
+    .ps-cluster { display: flex; gap: 8px; margin-top: 12px; }
+  </style>
+</head>
+<body>
+  <div class="ps-root" data-archetype="material" dir="rtl">
+    <div id="preact-counter-island" data-island="counter" data-props='{"initialCount":0,"step":1}'>
+      <!-- SSR Initial HTML for 0-CLS Hydration -->
+      <div class="ps-card">
+        <div class="ps-stack">
+          <h3 class="ps-card__title">شمارنده تعاملی (Preact Island)</h3>
+          <div class="ps-badge" data-variant="info">
+            تعداد: <span id="preact-count-val">0</span>
+          </div>
+          <div class="ps-cluster">
+            <button type="button" id="preact-btn-inc" class="ps-button" data-variant="primary">
+              افزایش (+1)
+            </button>
+            <button type="button" id="preact-btn-dec" class="ps-button" data-variant="secondary">
+              کاهش (-1)
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Mock minimal window.wp runtime for standalone browser verification
+    window.wp = window.wp || {};
+    window.wp.i18n = {
+      __: (text) => text,
+    };
+  </script>
+</body>
+</html>

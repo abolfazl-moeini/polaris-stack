@@ -30,21 +30,22 @@
     --ps-shadow-level-2: 4px 4px 0px #000000;
     --ps-shadow-level-3: 6px 6px 0px #000000;
     --ps-shadow-level-4: 8px 8px 0px #000000;
+    --ps-border-color: #000000;
     --ps-radius-sm: 0px;
     --ps-radius-md: 0px;
     --ps-radius-lg: 0px;
   }
 
   /* Physical Button Press-Follow Depression */
-  [data-archetype="brutalist"] .ps-btn:active {
+  [data-archetype="brutalist"] .ps-button:active {
     transform: var(--ps-active-transform);
-    box-shadow: none !important;
+    box-shadow: none;
   }
 
   /* High-Contrast Black Borders on Components */
   [data-archetype="brutalist"] .ps-card,
-  [data-archetype="brutalist"] .ps-btn,
+  [data-archetype="brutalist"] .ps-button,
   [data-archetype="brutalist"] .ps-badge {
-    border-color: #000000 !important;
+    border-color: var(--ps-border-color);
   }
 }

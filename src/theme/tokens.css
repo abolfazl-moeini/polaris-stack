@@ -1,13 +1,68 @@
-:root {
+:root,
+.ps-root {
+  color-scheme: light;
+
+  /* Typography Tokens */
+  --ps-font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --ps-font-heading: var(--ps-font-body);
+  --ps-font-mono: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, monospace;
+
+  /* Content Sizing */
+  --ps-size-content: 60ch;
+  --ps-size-wide: 90rem;
+  --ps-size-cover: 100vh;
+
+  /* Installed Numeric Shadow Tokens */
+  --ps-shadow-1: 0 1px 2px rgb(0 0 0 / 0.08);
+  --ps-shadow-2: 0 4px 6px rgb(0 0 0 / 0.08);
+  --ps-shadow-3: 0 10px 15px rgb(0 0 0 / 0.1);
+  --ps-shadow-4: 0 20px 25px rgb(0 0 0 / 0.12);
+
+  /* Z-Index Ladder */
+  --ps-z-dropdown: 1000;
+  --ps-z-modal: 1100;
+  --ps-z-toast: 1200;
+  --ps-z-tooltip: 1300;
+
+  --ps-divider-size: 1px;
+  --ps-divider-line: var(--ps-color-border, #d4d4d8);
+  --ps-grid-min: 16rem;
+  --ps-frame-ratio: 16 / 9;
+
+  --ps-motion-duration: 0.15s;
+  --ps-spin-duration: 0.8s;
+
+  /* Deprecated Alias Mappings for Backward Compatibility (SPEC §2.2) */
+  --ps-shadow-level-1: var(--ps-shadow-1);
+  --ps-shadow-level-2: var(--ps-shadow-2);
+  --ps-shadow-level-3: var(--ps-shadow-3);
+  --ps-shadow-level-4: var(--ps-shadow-4);
+
+  /* Color System Bridge (SPEC §2.2.1) */
+  --ps-accent-9: var(--ps-color-primary, #0e5f63);
+  --ps-gray-6: var(--ps-color-border, #d4d4d8);
+  --ps-surface-base: var(--ps-color-bg, #ffffff);
+
+  /* Base Additive Tokens (Defaults when un-themed) */
+  --ps-border-width: 1px;
+  --ps-border-style: solid;
+  --ps-surface-opacity: 100%;
+  --ps-surface-tint-step: 0%;
+  --ps-backdrop-blur: 0px;
+  --ps-backdrop-saturate: 100%;
+  --ps-active-transform: none;
+  --ps-motion-easing: ease;
+  --ps-corner-shape: round;
+
+/* wpdev-design-tokens:start */
   --ps-color-bg: #ffffff;
   --ps-color-fg: #111111;
   --ps-color-muted: #f4f4f5;
   --ps-color-border: #d4d4d8;
-  --ps-color-primary: #2563eb;
+  --ps-color-primary: #0e5f63;
   --ps-color-primary-fg: #ffffff;
   --ps-color-soft: #eff6ff;
   --ps-color-soft-fg: #1d4ed8;
-
   --ps-color-success: #16a34a;
   --ps-color-success-fg: #ffffff;
   --ps-color-danger: #dc2626;
@@ -16,13 +71,12 @@
   --ps-color-warning-fg: #ffffff;
   --ps-color-info: #2563eb;
   --ps-color-info-fg: #ffffff;
-
-  color-scheme: light;
-
-  --ps-font-body: system-ui, sans-serif;
-  --ps-font-heading: var(--ps-font-body);
-  --ps-font-mono: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, monospace;
-
+  --ps-color-navy: #0a2533;
+  --ps-color-teal: #0e5f63;
+  --ps-color-sand: #e9d8b4;
+  --ps-color-white: #ffffff;
+  --ps-color-dark: #0f172a;
+  --ps-color-backdrop: rgba(0, 0, 0, 0.45);
   --ps-space-0: 0;
   --ps-space-1: 0.25rem;
   --ps-space-2: 0.5rem;
@@ -30,29 +84,16 @@
   --ps-space-4: 1rem;
   --ps-space-6: 1.5rem;
   --ps-space-8: 2rem;
-
-  --ps-size-content: 60ch;
-  --ps-size-wide: 90rem;
-  --ps-size-cover: 100vh;
-
+  --ps-space-10: 0.25rem;
+  --ps-space-20: 0.5rem;
+  --ps-space-30: 1rem;
+  --ps-space-40: 1.5rem;
+  --ps-space-50: 2rem;
   --ps-radius-1: 0.25rem;
   --ps-radius-2: 0.5rem;
   --ps-radius-full: 9999px;
-
-  --ps-shadow-1: 0 1px 2px rgb(0 0 0 / 0.08);
-  --ps-shadow-2: 0 4px 6px rgb(0 0 0 / 0.08);
-  --ps-shadow-3: 0 10px 15px rgb(0 0 0 / 0.1);
-  --ps-shadow-4: 0 20px 25px rgb(0 0 0 / 0.12);
-
-  --ps-z-dropdown: 1000;
-  --ps-z-modal: 1100;
-  --ps-z-toast: 1200;
-  --ps-z-tooltip: 1300;
-
-  --ps-divider-size: 1px;
-  --ps-divider-line: var(--ps-color-border);
-  --ps-grid-min: 16rem;
-  --ps-frame-ratio: 16 / 9;
-
-  --ps-motion-duration: 0.15s;
+  --ps-radius-sm: 4px;
+  --ps-radius-base: 8px;
+  --ps-radius-lg: 16px;
+/* wpdev-design-tokens:end */
 }

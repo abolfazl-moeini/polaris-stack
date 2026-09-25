@@ -28,29 +28,28 @@ function resolveBuildMeta(overrides = {}) {
   return { sha, builtAt };
 }
 
-const CSS_FILES = [
+const BASE_FILES = [
   "src/theme/tokens.css",
   "src/theme/themes.css",
   "src/theme/base.css",
   "src/layout/layout.css",
   "src/components/components.css",
+  "src/components/islands.css",
 ];
 
-export async function buildStylesCss(outDir, options = {}) {
-  const { minify = true, version = "1.0.0" } = options;
+async function compileLayeredCore(outDir, options = {}) {
+  const { minify = true } = options;
 
-  // Bundle the stylesheets with esbuild: it inlines the @imports in source
-  // order (keeping @layer/@supports/@media blocks intact) and emits a source
-  // map that references the real src/**/*.css files.
+  const entryLines = [
+    '@import "./src/theme/layers.css";',
+    '@import "./src/theme/harden.css";',
+    ...BASE_FILES.map((file) => `@import "./${file}" layer(ps.base);`),
+  ];
+
   const entryFile = path.join(root, ".styles-entry.tmp.css");
   const bundleFile = path.join(outDir, ".styles-bundle.tmp.css");
-  writeFileSync(
-    entryFile,
-    CSS_FILES.map((file) => `@import "./${file}";`).join("\n") + "\n",
-    "utf8",
-  );
+  writeFileSync(entryFile, entryLines.join("\n") + "\n", "utf8");
 
-  let result;
   try {
     await esbuild.build({
       entryPoints: [entryFile],
@@ -64,14 +63,11 @@ export async function buildStylesCss(outDir, options = {}) {
 
     const combined = readFileSync(bundleFile, "utf8");
     const prevMap = JSON.parse(readFileSync(`${bundleFile}.map`, "utf8"));
-    // esbuild writes sources relative to the map location (outDir) — resolve
-    // them to absolute paths so postcss re-relativizes them against the final
-    // output location.
     prevMap.sources = prevMap.sources.map((source) =>
       path.resolve(outDir, source),
     );
 
-    result = await postcss(
+    const result = await postcss(
       minify
         ? [
             cssnano({
@@ -89,11 +85,18 @@ export async function buildStylesCss(outDir, options = {}) {
         sourcesContent: true,
       },
     });
+
+    return result;
   } finally {
     rmSync(entryFile, { force: true });
     rmSync(bundleFile, { force: true });
     rmSync(`${bundleFile}.map`, { force: true });
   }
+}
+
+export async function buildStylesCss(outDir, options = {}) {
+  const { version = "1.0.0" } = options;
+  const result = await compileLayeredCore(outDir, options);
 
   const { sha, builtAt } = resolveBuildMeta(options);
   const header = `/*! @wpdev/polaris-stack v${version}+${sha} @ ${builtAt} | MIT | layout/style separated design foundation */\n`;
@@ -107,8 +110,6 @@ export async function buildStylesCss(outDir, options = {}) {
 
   if (result.map) {
     const map = result.map.toJSON();
-    // Ship relative sources (relative to the map location) so the build stays
-    // reproducible across machines and the map is portable.
     map.sources = map.sources.map((source) =>
       path.isAbsolute(source) ? path.relative(outDir, source) : source,
     );
@@ -122,20 +123,93 @@ export async function buildStylesCss(outDir, options = {}) {
   return result.css;
 }
 
+export async function compileScopedCore(outDir, options = {}) {
+  const { minify = true } = options;
+
+  // 1. Layered tokens + themes + base + harden
+  const layeredEntryLines = [
+    '@import "./src/theme/layers.css";',
+    '@import "./src/theme/harden.css";',
+    '@import "./src/theme/tokens.css" layer(ps.base);',
+    '@import "./src/theme/themes.css" layer(ps.base);',
+    '@import "./src/theme/base.css" layer(ps.base);',
+  ];
+  const layeredTmp = path.join(root, ".b-layered.tmp.css");
+  const layeredBundle = path.join(outDir, ".b-layered.bundle.tmp.css");
+  writeFileSync(layeredTmp, layeredEntryLines.join("\n") + "\n", "utf8");
+
+  await esbuild.build({
+    entryPoints: [layeredTmp],
+    outfile: layeredBundle,
+    bundle: true,
+    write: true,
+    minify: false,
+    logLevel: "silent",
+  });
+  const layeredCss = readFileSync(layeredBundle, "utf8");
+  rmSync(layeredTmp, { force: true });
+  rmSync(layeredBundle, { force: true });
+
+  // 2. Unlayered scoped components + layout + islands
+  const scopedFiles = [
+    "src/layout/layout.css",
+    "src/components/components.css",
+    "src/components/islands.css",
+  ];
+  const scopedTmp = path.join(root, ".b-scoped.tmp.css");
+  const scopedBundle = path.join(outDir, ".b-scoped.bundle.tmp.css");
+  writeFileSync(scopedTmp, scopedFiles.map((f) => `@import "./${f}";`).join("\n") + "\n", "utf8");
+
+  await esbuild.build({
+    entryPoints: [scopedTmp],
+    outfile: scopedBundle,
+    bundle: true,
+    write: true,
+    minify: false,
+    logLevel: "silent",
+  });
+  const rawScopedCss = readFileSync(scopedBundle, "utf8");
+  rmSync(scopedTmp, { force: true });
+  rmSync(scopedBundle, { force: true });
+
+  // Prefix selector plugin: prepends .ps-root to all component rules
+  const prefixPlugin = {
+    postcssPlugin: "postcss-prefix-scoped",
+    Rule(rule) {
+      if (rule.parent && rule.parent.type === "atrule" && rule.parent.name === "keyframes") return;
+      rule.selectors = rule.selectors.map((sel) => {
+        sel = sel.trim();
+        if (sel === ":root" || sel === "body" || sel === "html") return sel;
+        if (sel.startsWith(".ps-root") || sel.includes(".ps-root")) return sel;
+        return `.ps-root ${sel}`;
+      });
+    },
+  };
+
+  const plugins = [prefixPlugin];
+  if (minify) {
+    plugins.push(cssnano({ preset: ["default", { discardComments: { removeAll: false } }] }));
+  }
+
+  const prefixedResult = await postcss(plugins).process(rawScopedCss, { from: scopedBundle });
+  return layeredCss + "\n\n/* Scoped Unlayered Components (Option B) */\n" + prefixedResult.css;
+}
+
 export async function buildChameleonStyles(outDir, options = {}) {
-  const { minify = true, version = "1.0.0" } = options;
+  const { version = "1.0.0", cascade = "scoped" } = options;
   const { sha, builtAt } = resolveBuildMeta(options);
   const header = `/*! @wpdev/polaris-stack v${version}+${sha} @ ${builtAt} | MIT | chameleon engine */\n`;
 
-  // 1. Build polaris-core.css
-  const coreSrc = path.join(root, "src/styles/polaris-core.css");
-  if (existsSync(coreSrc)) {
-    const coreCss = readFileSync(coreSrc, "utf8");
-    const processedCore = minify
-      ? (await postcss([cssnano({ preset: ["default", { discardComments: { removeAll: false } }] })]).process(coreCss, { from: coreSrc })).css
-      : coreCss;
-    writeFileSync(path.join(outDir, "polaris-core.css"), header + processedCore, "utf8");
+  // 1. Build polaris-core.css (Default: Option B Scoped)
+  let coreContent;
+  if (cascade === "layered") {
+    const result = await compileLayeredCore(outDir, options);
+    coreContent = header + result.css + "\n";
+  } else {
+    const scopedCss = await compileScopedCore(outDir, options);
+    coreContent = header + scopedCss + "\n";
   }
+  writeFileSync(path.join(outDir, "polaris-core.css"), coreContent, "utf8");
 
   // 2. Build archetypes/*.css
   const archetypesSrcDir = path.join(root, "src/styles/archetypes");
@@ -147,10 +221,23 @@ export async function buildChameleonStyles(outDir, options = {}) {
     const filePath = path.join(archetypesSrcDir, file);
     if (existsSync(filePath)) {
       const srcCss = readFileSync(filePath, "utf8");
-      const processed = minify
+      const processed = (options.minify ?? true)
         ? (await postcss([cssnano({ preset: ["default", { discardComments: { removeAll: false } }] })]).process(srcCss, { from: filePath })).css
         : srcCss;
       writeFileSync(path.join(archetypesOutDir, file), header + processed, "utf8");
     }
   }
+}
+
+export async function buildCascadeTwin(outBaseDir = path.join(root, "dist-cascade"), options = {}) {
+  const dirA = path.join(outBaseDir, "A");
+  const dirB = path.join(outBaseDir, "B");
+  mkdirSync(dirA, { recursive: true });
+  mkdirSync(dirB, { recursive: true });
+
+  // Option A (Layered)
+  await buildChameleonStyles(dirA, { ...options, cascade: "layered", minify: false });
+
+  // Option B (Scoped)
+  await buildChameleonStyles(dirB, { ...options, cascade: "scoped", minify: false });
 }

@@ -79,6 +79,20 @@ All tokens use the `--ps-` prefix:
 
 Layout primitives reference spacing via `spaceVar("4")` → `var(--ps-space-4)` and set it as `--ps-gap` etc.
 
+### 3.1 Design Token Generation & `theme.json` Synchronization
+
+All source tokens are maintained in `tokens.json` using the W3C DTCG format (`$value` and `$type`).
+
+- **Build Script:** `scripts/build-tokens.mjs` (`npm run build:tokens`).
+- **Outputs:**
+  - `src/theme/tokens.css` with boundary markers `/* wpdev-design-tokens:start */ ... /* wpdev-design-tokens:end */`.
+  - `src/theme/tokens.d.ts` emitting `DesignTokenColor`, `DesignTokenSpacing`, and `DesignTokenRadius`.
+- **WordPress Block Theme Merge:** Passing `--theme <path/to/theme.json>` executes a non-destructive merge into WordPress block themes:
+  - Preserves existing theme slugs (e.g., `navy`, `teal`, `sand`, `cream`).
+  - Appends missing palette items to `settings.color.palette`.
+  - Maps spacing to `settings.spacing.spacingSizes` and radii to `settings.border.radiusSizes`.
+- **Automated Tests:** `scripts/build-tokens.test.mjs` (`npm run test:tokens`).
+
 ---
 
 ## 4. Public API Shape

@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PolarisComponentManifest",
+  "type": "object",
+  "required": ["version", "components", "layouts", "islands", "utilities", "internal"],
+  "properties": {
+    "version": { "type": "string" },
+    "components": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["rootClass", "rootTag"],
+        "properties": {
+          "rootClass": {
+            "type": "string",
+            "pattern": "^ps-[a-z0-9]+(-[a-z0-9]+)*$"
+          },
+          "rootTag": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "variants": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          },
+          "parts": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^ps-[a-z0-9]+(-[a-z0-9]+)*$"
+            }
+          },
+          "states": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^ps-[a-z0-9]+(-[a-z0-9]+)*$"
+            }
+          },
+          "aria": {
+            "type": "object",
+            "additionalProperties": { "type": "string" }
+          },
+          "requiredAttributes": {
+            "type": "object"
+          },
+          "tokens": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "hooks": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "layouts": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["rootClass"],
+        "properties": {
+          "rootClass": {
+            "type": "string",
+            "pattern": "^ps-[a-z0-9]+(-[a-z0-9]+)*$"
+          },
+          "modifiers": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    },
+    "islands": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["rootClass"],
+        "properties": {
+          "rootClass": {
+            "type": "string",
+            "pattern": "^ps-[a-z0-9]+(-[a-z0-9]+)*$"
+          },
+          "parts": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^ps-[a-z0-9]+(-[a-z0-9]+)*$"
+            }
+          },
+          "modifiers": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^ps-[a-z0-9]+(-[a-z0-9]+)*$"
+            }
+          }
+        }
+      }
+    },
+    "utilities": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "pattern": "^ps-[a-z0-9]+(-[a-z0-9]+)*$"
+        }
+      }
+    },
+    "internal": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^ps-[a-z0-9]+(-[a-z0-9]+)*$"
+      }
+    }
+  }
+}

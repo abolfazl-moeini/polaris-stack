@@ -1,0 +1,6 @@
+/* H6: Classic WordPress/Theme form resets */
+input {
+  border: 2px solid red;
+  width: auto;
+  line-height: 1;
+}

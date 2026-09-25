@@ -1,0 +1,13 @@
+/* Peaceful host theme: demonstrates token flow and font-family inheritance */
+body {
+  font-family: Georgia, serif;
+}
+:root {
+  --wp--preset--color--primary: #0073aa;
+}
+@layer ps.host {
+  .ps-root {
+    --ps-font-body: Georgia, serif;
+    --ps-color-primary: var(--wp--preset--color--primary);
+  }
+}

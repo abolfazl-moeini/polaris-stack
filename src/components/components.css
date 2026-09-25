@@ -25,6 +25,12 @@
   padding-inline: var(--ps-space-3);
 }
 
+.ps-button-md {
+  font-size: 1rem;
+  padding-block: var(--ps-space-2);
+  padding-inline: var(--ps-space-4);
+}
+
 .ps-button-lg {
   font-size: 1.125rem;
   padding-block: var(--ps-space-3);
@@ -273,6 +279,12 @@
   border-color: transparent;
 }
 
+.ps-badge-neutral {
+  background-color: var(--ps-color-muted);
+  color: var(--ps-color-fg);
+  border-color: transparent;
+}
+
 .ps-alert {
   padding: var(--ps-space-3) var(--ps-space-4);
   border-radius: var(--ps-radius-2);
@@ -312,7 +324,7 @@
   border: 2px solid var(--ps-color-border);
   border-block-start-color: var(--ps-color-primary);
   border-radius: 50%;
-  animation: ps-spin 0.8s linear infinite;
+  animation: ps-spin var(--ps-spin-duration) linear infinite;
 }
 
 @keyframes ps-spin {

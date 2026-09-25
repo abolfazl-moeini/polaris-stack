@@ -72,6 +72,52 @@ All design tokens are `--ps-*` CSS custom properties in `styles.css`.
 | Elevation | `--ps-shadow-1` … `--ps-shadow-4` |
 | Z-index | `--ps-z-dropdown`, `--ps-z-modal`, `--ps-z-toast` |
 
+### Design Tokens & Build Pipeline
+
+Polaris Stack uses a single-source token file (`tokens.json`) following the [W3C Design Tokens Community Group (DTCG)](https://design-tokens.github.io/community-group/format/) specification:
+
+```json
+{
+  "color": {
+    "primary": { "$value": "#0e5f63", "$type": "color" }
+  },
+  "spacing": {
+    "1": { "$value": "0.25rem", "$type": "dimension" }
+  },
+  "radius": {
+    "1": { "$value": "0.25rem", "$type": "dimension" }
+  }
+}
+```
+
+Run the token generator:
+
+```bash
+npm run build:tokens
+```
+
+This compiles:
+1. **CSS Custom Properties:** Written to `src/theme/tokens.css` inside `/* wpdev-design-tokens:start */ ... /* wpdev-design-tokens:end */`.
+2. **TypeScript Declarations:** Written to `src/theme/tokens.d.ts` (`DesignTokenColor`, `DesignTokenSpacing`, `DesignTokenRadius`).
+
+#### Synchronizing with WordPress `theme.json`
+
+Pass `--theme <path/to/theme.json>` to merge tokens non-destructively into WordPress Full Site Editing themes:
+
+```bash
+node scripts/build-tokens.mjs --theme path/to/theme.json
+```
+
+- **Slug-preserving:** Existing theme slugs (e.g. `navy`, `teal`, `sand`, `cream`) are kept intact.
+- **Safe additions:** Appends missing tokens to `settings.color.palette`, `settings.spacing.spacingSizes`, and `settings.border.radiusSizes`.
+- **Validation:** Enforces strict array-of-objects structure for WordPress block themes.
+
+Test the token builder:
+
+```bash
+npm run test:tokens
+```
+
 ### Overriding tokens
 
 Rebrand by overriding variables on a wrapper or `:root`:
