@@ -1,7 +1,7 @@
 import type { HTMLAttributes, ReactElement, ReactNode } from "react";
 import { cx } from "../utilities/cx";
 
-export type BadgeTone = "default" | "success" | "danger" | "warning" | "info";
+export type BadgeTone = "neutral" | "default" | "success" | "danger" | "warning" | "info";
 
 type BadgeProps = HTMLAttributes<HTMLSpanElement> & {
   tone?: BadgeTone;
@@ -9,11 +9,12 @@ type BadgeProps = HTMLAttributes<HTMLSpanElement> & {
 };
 
 export function Badge({
-  tone = "default",
+  tone: rawTone = "neutral",
   className,
   children,
   ...rest
 }: BadgeProps): ReactElement {
+  const tone = rawTone === "default" ? "neutral" : rawTone;
   return (
     <span
       className={cx("ps-badge", `ps-badge-${tone}`, className)}
