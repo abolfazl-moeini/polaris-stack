@@ -347,6 +347,18 @@
   box-shadow: 0 1px 0 var(--ps-color-border);
 }
 
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+input[type="url"],
+input[type="tel"],
+input[type="number"],
+textarea,
+select {
+  border: 1px solid var(--ps-color-border);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .ps-button,
   .ps-card-interactive {

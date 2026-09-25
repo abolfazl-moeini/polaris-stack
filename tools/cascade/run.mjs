@@ -35,6 +35,7 @@ async function main() {
 
   async function testScenario({ option, optionCss, archetypeCss, hostCss, inlineStyle = "", htmlWrapper = false }) {
     const combinedCss = `
+      @layer ps.harden, ps.base, ps.archetype, ps.host, ps.tenant, ps.skin;
       ${hostCss}
       ${optionCss}
       ${archetypeCss}
@@ -218,6 +219,11 @@ async function main() {
 
   writeFileSync(path.join(fixturesDir, "report.md"), mdSummary, "utf8");
   console.log("==> Cascade test complete. Reports written to fixtures/cascade/report.json and report.md");
+
+  if (!h1_B_won || !h3_B_won || !h6_B_won || !t4_4_B_passed) {
+    console.error("FAIL: Cascade verification failed for Option B (Scoped).");
+    process.exitCode = 1;
+  }
 }
 
 main().catch((err) => {
