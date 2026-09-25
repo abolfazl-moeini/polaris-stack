@@ -17,6 +17,7 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
+    "./polaris-core.css": "./dist/polaris-core.css",
     "./styles.css": "./dist/styles.css",
     "./layout": {
       "types": "./dist/layout/index.d.ts",
