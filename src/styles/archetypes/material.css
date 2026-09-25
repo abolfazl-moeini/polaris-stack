@@ -34,4 +34,11 @@
     --ps-radius-md: 12px;
     --ps-radius-lg: 20px;
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-archetype="material"] {
+      --ps-motion-duration: 0ms;
+      --ps-active-transform: none;
+    }
+  }
 }

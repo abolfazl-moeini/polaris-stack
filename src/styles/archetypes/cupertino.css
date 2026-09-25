@@ -50,4 +50,11 @@
       background-color var(--ps-motion-duration) ease,
       box-shadow var(--ps-motion-duration) ease;
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-archetype="cupertino"] {
+      --ps-motion-duration: 0ms;
+      --ps-active-transform: none;
+    }
+  }
 }
