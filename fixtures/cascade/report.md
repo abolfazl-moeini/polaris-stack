@@ -22,4 +22,4 @@
 | **H4** | Theme visual `!important` (`bg: red !important`) | ❌ Theme Overrides | ❌ Theme Overrides | **Documented Limit** |
 | **H5** | Inline `style="margin: 0 !important"` | ❌ Inline Overrides | ❌ Inline Overrides | **Documented Limit** |
 | **H6** | Classic form reset (`input { border: 2px solid red }`) | ❌ Theme Overrides | ✅ Polaris Wins | **B Wins** |
-| **T4-4** | Token flow (`--ps-color-primary`) | ✅ Reactive (rgb(14, 95, 99)) | ✅ Reactive (rgb(14, 95, 99)) | **Tie (Both Win)** |
+| **T4-4** | Token flow (`--ps-color-primary`) | ✅ Reactive (rgb(18, 52, 86)) | ✅ Reactive (rgb(18, 52, 86)) | **Tie (Both Win)** |

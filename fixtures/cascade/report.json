@@ -23,11 +23,11 @@
     },
     "h6_form_reset": {
       "A": "Theme",
-      "B": "Theme"
+      "B": "Polaris"
     },
     "t4_4_token_flow": {
-      "A": false,
-      "B": false
+      "A": true,
+      "B": true
     }
   },
   "raw_measurements": {
@@ -42,10 +42,10 @@
           "textDecorationLine": "none"
         },
         "input": {
-          "borderWidth": "2px",
-          "borderStyle": "inset",
-          "borderColor": "rgb(118, 118, 118)",
-          "width": "153px"
+          "borderWidth": "1px",
+          "borderStyle": "solid",
+          "borderColor": "rgb(212, 212, 216)",
+          "width": "151px"
         }
       },
       "B": {
@@ -58,10 +58,10 @@
           "textDecorationLine": "none"
         },
         "input": {
-          "borderWidth": "2px",
-          "borderStyle": "inset",
-          "borderColor": "rgb(118, 118, 118)",
-          "width": "153px"
+          "borderWidth": "1px",
+          "borderStyle": "solid",
+          "borderColor": "rgb(212, 212, 216)",
+          "width": "151px"
         }
       }
     },
@@ -76,10 +76,10 @@
           "textDecorationLine": "none"
         },
         "input": {
-          "borderWidth": "2px",
-          "borderStyle": "inset",
-          "borderColor": "rgb(118, 118, 118)",
-          "width": "153px"
+          "borderWidth": "1px",
+          "borderStyle": "solid",
+          "borderColor": "rgb(212, 212, 216)",
+          "width": "151px"
         }
       },
       "B": {
@@ -92,10 +92,10 @@
           "textDecorationLine": "none"
         },
         "input": {
-          "borderWidth": "2px",
-          "borderStyle": "inset",
-          "borderColor": "rgb(118, 118, 118)",
-          "width": "153px"
+          "borderWidth": "1px",
+          "borderStyle": "solid",
+          "borderColor": "rgb(212, 212, 216)",
+          "width": "151px"
         }
       }
     },
@@ -110,10 +110,10 @@
           "textDecorationLine": "none"
         },
         "input": {
-          "borderWidth": "2px",
-          "borderStyle": "inset",
-          "borderColor": "rgb(118, 118, 118)",
-          "width": "153px"
+          "borderWidth": "1px",
+          "borderStyle": "solid",
+          "borderColor": "rgb(212, 212, 216)",
+          "width": "151px"
         }
       },
       "B": {
@@ -126,10 +126,10 @@
           "textDecorationLine": "none"
         },
         "input": {
-          "borderWidth": "2px",
-          "borderStyle": "inset",
-          "borderColor": "rgb(118, 118, 118)",
-          "width": "153px"
+          "borderWidth": "1px",
+          "borderStyle": "solid",
+          "borderColor": "rgb(212, 212, 216)",
+          "width": "151px"
         }
       }
     },
@@ -144,10 +144,10 @@
           "textDecorationLine": "none"
         },
         "input": {
-          "borderWidth": "2px",
-          "borderStyle": "inset",
-          "borderColor": "rgb(118, 118, 118)",
-          "width": "153px"
+          "borderWidth": "1px",
+          "borderStyle": "solid",
+          "borderColor": "rgb(212, 212, 216)",
+          "width": "151px"
         }
       },
       "B": {
@@ -160,10 +160,10 @@
           "textDecorationLine": "none"
         },
         "input": {
-          "borderWidth": "2px",
-          "borderStyle": "inset",
-          "borderColor": "rgb(118, 118, 118)",
-          "width": "153px"
+          "borderWidth": "1px",
+          "borderStyle": "solid",
+          "borderColor": "rgb(212, 212, 216)",
+          "width": "151px"
         }
       }
     },
@@ -178,10 +178,10 @@
           "textDecorationLine": "none"
         },
         "input": {
-          "borderWidth": "2px",
-          "borderStyle": "inset",
-          "borderColor": "rgb(118, 118, 118)",
-          "width": "153px"
+          "borderWidth": "1px",
+          "borderStyle": "solid",
+          "borderColor": "rgb(212, 212, 216)",
+          "width": "151px"
         }
       },
       "B": {
@@ -194,10 +194,10 @@
           "textDecorationLine": "none"
         },
         "input": {
-          "borderWidth": "2px",
-          "borderStyle": "inset",
-          "borderColor": "rgb(118, 118, 118)",
-          "width": "153px"
+          "borderWidth": "1px",
+          "borderStyle": "solid",
+          "borderColor": "rgb(212, 212, 216)",
+          "width": "151px"
         }
       }
     },
@@ -228,17 +228,17 @@
           "textDecorationLine": "none"
         },
         "input": {
-          "borderWidth": "2px",
+          "borderWidth": "1px",
           "borderStyle": "solid",
-          "borderColor": "rgb(255, 0, 0)",
-          "width": "153px"
+          "borderColor": "rgb(212, 212, 216)",
+          "width": "151px"
         }
       }
     },
     "T4_4_token_flow": {
       "A": {
         "button": {
-          "backgroundColor": "rgb(14, 95, 99)",
+          "backgroundColor": "rgb(18, 52, 86)",
           "margin": "0px",
           "fontSize": "16px",
           "boxSizing": "border-box",
@@ -246,15 +246,15 @@
           "textDecorationLine": "none"
         },
         "input": {
-          "borderWidth": "2px",
-          "borderStyle": "inset",
-          "borderColor": "rgb(118, 118, 118)",
-          "width": "153px"
+          "borderWidth": "1px",
+          "borderStyle": "solid",
+          "borderColor": "rgb(212, 212, 216)",
+          "width": "151px"
         }
       },
       "B": {
         "button": {
-          "backgroundColor": "rgb(14, 95, 99)",
+          "backgroundColor": "rgb(18, 52, 86)",
           "margin": "0px",
           "fontSize": "16px",
           "boxSizing": "border-box",
@@ -262,17 +262,17 @@
           "textDecorationLine": "none"
         },
         "input": {
-          "borderWidth": "2px",
-          "borderStyle": "inset",
-          "borderColor": "rgb(118, 118, 118)",
-          "width": "153px"
+          "borderWidth": "1px",
+          "borderStyle": "solid",
+          "borderColor": "rgb(212, 212, 216)",
+          "width": "151px"
         }
       }
     },
     "T4_5_peaceful_host_font": {
       "A": {
         "button": {
-          "backgroundColor": "rgb(14, 95, 99)",
+          "backgroundColor": "rgb(0, 115, 170)",
           "margin": "0px",
           "fontSize": "16px",
           "boxSizing": "border-box",
@@ -280,15 +280,15 @@
           "textDecorationLine": "none"
         },
         "input": {
-          "borderWidth": "2px",
-          "borderStyle": "inset",
-          "borderColor": "rgb(118, 118, 118)",
-          "width": "153px"
+          "borderWidth": "1px",
+          "borderStyle": "solid",
+          "borderColor": "rgb(212, 212, 216)",
+          "width": "151px"
         }
       },
       "B": {
         "button": {
-          "backgroundColor": "rgb(14, 95, 99)",
+          "backgroundColor": "rgb(0, 115, 170)",
           "margin": "0px",
           "fontSize": "16px",
           "boxSizing": "border-box",
@@ -296,17 +296,17 @@
           "textDecorationLine": "none"
         },
         "input": {
-          "borderWidth": "2px",
-          "borderStyle": "inset",
-          "borderColor": "rgb(118, 118, 118)",
-          "width": "153px"
+          "borderWidth": "1px",
+          "borderStyle": "solid",
+          "borderColor": "rgb(212, 212, 216)",
+          "width": "151px"
         }
       }
     },
     "T4_6_tenant_rebind": {
       "A": {
         "button": {
-          "backgroundColor": "rgb(14, 95, 99)",
+          "backgroundColor": "rgb(171, 205, 239)",
           "margin": "0px",
           "fontSize": "16px",
           "boxSizing": "border-box",
@@ -314,15 +314,15 @@
           "textDecorationLine": "none"
         },
         "input": {
-          "borderWidth": "2px",
-          "borderStyle": "inset",
-          "borderColor": "rgb(118, 118, 118)",
-          "width": "153px"
+          "borderWidth": "1px",
+          "borderStyle": "solid",
+          "borderColor": "rgb(212, 212, 216)",
+          "width": "151px"
         }
       },
       "B": {
         "button": {
-          "backgroundColor": "rgb(14, 95, 99)",
+          "backgroundColor": "rgb(171, 205, 239)",
           "margin": "0px",
           "fontSize": "16px",
           "boxSizing": "border-box",
@@ -330,10 +330,10 @@
           "textDecorationLine": "none"
         },
         "input": {
-          "borderWidth": "2px",
-          "borderStyle": "inset",
-          "borderColor": "rgb(118, 118, 118)",
-          "width": "153px"
+          "borderWidth": "1px",
+          "borderStyle": "solid",
+          "borderColor": "rgb(212, 212, 216)",
+          "width": "151px"
         }
       }
     }
